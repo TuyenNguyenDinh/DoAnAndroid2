@@ -12,14 +12,21 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.doanandroid02.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_product"
+        android:name="com.example.doanandroid02.ui.all_product.AllProductFragment"
+        android:label="@string/title_product"
+        tools:layout="@layout/fragment_product" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.doanandroid02.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_category"
+        android:name="com.example.doanandroid02.ui.category.CategoryFragment"
+        android:label="@string/title_category"
+        tools:layout="@layout/fragment_home" >
+    </fragment>
 </navigation>

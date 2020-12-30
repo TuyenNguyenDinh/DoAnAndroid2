@@ -1,4 +1,4 @@
-package com.example.doanandroid02.ui.home;
+package com.example.doanandroid02.ui.all_product;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doanandroid02.R;
 import com.example.doanandroid02.activity.MainContract;
 import com.example.doanandroid02.activity.MainPresenter;
-import com.example.doanandroid02.adapter.NewProductAdapter;
+import com.example.doanandroid02.adapter.ProductAdapter;
 import com.example.myapplicationbottmi.models.Category;
 import com.example.myapplicationbottmi.models.Product;
 
 import java.util.List;
 
-public class HomeFragment extends Fragment implements MainContract.View {
+public class AllProductFragment extends Fragment implements MainContract.View {
 
     RecyclerView recyclerView;
-    NewProductAdapter newProductAdapter;
+    ProductAdapter productAdapter;
     MainContract.Presenter mPresenter;
 
     @Override
@@ -35,16 +35,18 @@ public class HomeFragment extends Fragment implements MainContract.View {
     }
 
 
-
     @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        getActivity().getMenuInflater().inflate(R.menu.menu_main, menu);
+        getActivity().getMenuInflater().inflate(R.menu.menu, menu);
     }
 
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-        recyclerView = view.findViewById(R.id.recyclerviewHome);
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_product, container, false);
+        recyclerView = view.findViewById(R.id.recyclerview);
         mPresenter = new MainPresenter(this);
         mPresenter.loadProducts();
         return view;
@@ -62,10 +64,10 @@ public class HomeFragment extends Fragment implements MainContract.View {
 
     @Override
     public void updateListProduct(List<Product> products) {
-        newProductAdapter = new NewProductAdapter(products, getActivity());
+        productAdapter = new ProductAdapter(products, getActivity());
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL,false));
-        recyclerView.setAdapter(newProductAdapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        recyclerView.setAdapter(productAdapter);
     }
 
     @Override
