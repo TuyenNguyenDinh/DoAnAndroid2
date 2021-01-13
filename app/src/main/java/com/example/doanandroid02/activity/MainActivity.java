@@ -10,14 +10,19 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.doanandroid02.PrefConfig;
 import com.example.doanandroid02.R;
+import com.example.doanandroid02.models.Cart;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     public static BottomNavigationView navView;
     public static ProgressDialog loading;
-
+    public static List<Cart> cartArrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +37,12 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
+        cartArrayList = PrefConfig.readList(this);
+        if (cartArrayList != null) {
 
+        } else {
+            cartArrayList = new ArrayList<>();
+        }
     }
 
 
