@@ -2,7 +2,7 @@ package com.example.doanandroid02.retrofit;
 
 public class APIService {
 
-    private static String base_url = "http://10.0.2.2/doan-laravel/public/";
+    private static String base_url = "http://192.168.56.1/doan-laravel/public/";
 
     public static DataClient getService(){
 

@@ -17,7 +17,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.doanandroid02.PrefConfig;
 import com.example.doanandroid02.R;
+import com.example.doanandroid02.models.Cart;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
@@ -32,6 +34,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private static Double price;
     public static int id;
     public static String name;
+    public static String img;
 
 
     @Override
@@ -54,6 +57,11 @@ public class ProductDetailsActivity extends AppCompatActivity {
         btAddCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int soluong = 1;
+                Double newprice = soluong * price;
+                Cart cart = new Cart(id, name, newprice, soluong,img);
+                MainActivity.cartArrayList.add(cart);
+                PrefConfig.writeList(getApplicationContext(), MainActivity.cartArrayList);
                 Toast.makeText(ProductDetailsActivity.this, "Add success", Toast.LENGTH_SHORT).show();
             }
         });
@@ -68,7 +76,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
             default:
                 break;
             case R.id.card:
-                Toast.makeText(this, "this is card", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -87,12 +96,12 @@ public class ProductDetailsActivity extends AppCompatActivity {
         name = intent.getStringExtra("name");
         price = intent.getDoubleExtra("price", 0);
         String info = intent.getStringExtra("info");
-        String img = intent.getStringExtra("img");
+        img = intent.getStringExtra("img");
 
         textTenChiTietSp.setText(name);
         textGiaChiTietSp.setText(decimalFormat.format(price) + "VND");
         textChiTietSp.setText(Html.fromHtml(info));
-        Picasso.with(getApplicationContext()).load("http://192.168.102.2/doan-laravel/public/upload/" + img).into(imgChiTietSp);
+        Picasso.with(getApplicationContext()).load("http://192.168.56.1/doan-laravel/public/upload/" + img).into(imgChiTietSp);
     }
 
 }
