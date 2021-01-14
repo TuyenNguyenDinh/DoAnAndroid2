@@ -101,7 +101,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         textTenChiTietSp.setText(name);
         textGiaChiTietSp.setText(decimalFormat.format(price) + "VND");
         textChiTietSp.setText(Html.fromHtml(info));
-        Picasso.with(getApplicationContext()).load("http://192.168.13.2/doan-laravel/public/upload/" + img).into(imgChiTietSp);
+        Picasso.with(getApplicationContext()).load("http://192.168.56.1/doan-laravel/public/upload/" + img).into(imgChiTietSp);
     }
 
 }

@@ -81,7 +81,7 @@ public class NewProductAdapter extends RecyclerView.Adapter<NewProductAdapter.It
         holder.textTenSp.setText(product.getTen());
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         holder.textGiaSp.setText(decimalFormat.format(product.gia_sp) + "VND");
-        Picasso.with(context).load("http://192.168.13.2/doan-laravel/public/upload/" + product.getAnh())
+        Picasso.with(context).load("http://192.168.56.1/doan-laravel/public/upload/" + product.getAnh())
                 .resize(1000,1000)
                 .centerCrop()
                 .into(holder.imgSanPham);
