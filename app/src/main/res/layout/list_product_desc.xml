@@ -6,6 +6,7 @@
     android:layout_margin="5dp">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewDesc"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:paddingBottom="5dp"
@@ -17,13 +18,13 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imgSanPham"
+                android:id="@+id/imgSanPhamDesc"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:src="@drawable/ic_dashboard_black_24dp" />
 
             <TextView
-                android:id="@+id/textTenSp"
+                android:id="@+id/textTenSpDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:layout_marginLeft="10dp"
@@ -32,7 +33,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textGiaSp"
+                android:id="@+id/textGiaSpDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"

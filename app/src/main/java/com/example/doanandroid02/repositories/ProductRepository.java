@@ -1,9 +1,10 @@
 package com.example.doanandroid02.repositories;
 
 
+import com.example.doanandroid02.retrofit.APIService;
 import com.example.doanandroid02.retrofit.DataClient;
 import com.example.doanandroid02.retrofit.RetrofitClientInstance;
-import com.example.myapplicationbottmi.models.Product;
+import com.example.doanandroid02.models.Product;
 
 
 import java.util.List;
@@ -14,13 +15,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class ProductRepository {
-    DataClient api;
+    DataClient api = APIService.getService();
     public static List<Product> products;
-    public ProductRepository(){
-        Retrofit adapter = RetrofitClientInstance.getRetrofitInstance();
-        api = adapter.create(DataClient.class);
-    }
-    public void loadAll(DataCallBack<Product> dataCallBack){
+
+    public void loadAll(DataCallBack<Product> dataCallBack) {
         api.getProduct().enqueue(new Callback<List<Product>>() {
 
             @Override
@@ -43,7 +41,7 @@ public class ProductRepository {
     }
 
 
-    void find(int id){
+    void find(int id) {
 
     }
 }

@@ -1,9 +1,12 @@
-package com.example.myapplicationbottmi.models;
+package com.example.doanandroid02.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Product {
+    @SerializedName("id")
+    @Expose
+    private int id;
     @SerializedName("category_id")
     @Expose
     private int category_id;
@@ -23,13 +26,22 @@ public class Product {
     @Expose
     public String thong_tin_cu_the;
 
-    public Product(int category_id, String ten, String anh, double gia_sp, int so_luong, String thong_tin_cu_the) {
+    public Product(int id, int category_id, String ten, String anh, double gia_sp, int so_luong, String thong_tin_cu_the) {
+        this.id = id;
         this.category_id = category_id;
         this.ten = ten;
         this.anh = anh;
         this.gia_sp = gia_sp;
         this.so_luong = so_luong;
         this.thong_tin_cu_the = thong_tin_cu_the;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getCategory_id() {

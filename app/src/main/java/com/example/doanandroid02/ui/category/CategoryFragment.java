@@ -18,13 +18,17 @@ import androidx.fragment.app.Fragment;
 import com.example.doanandroid02.R;
 import com.example.doanandroid02.activity.MainContract;
 import com.example.doanandroid02.activity.MainPresenter;
+import com.example.doanandroid02.activity.ProductByIdActivity;
 import com.example.doanandroid02.adapter.CategoryAdapter;
-import com.example.myapplicationbottmi.models.Category;
-import com.example.myapplicationbottmi.models.Product;
+import com.example.doanandroid02.models.Category;
+import com.example.doanandroid02.models.Product;
+import com.example.doanandroid02.models.Profle;
+import com.example.doanandroid02.models.User;
+import com.example.doanandroid02.repositories.CategoryRepository;
 
 import java.util.List;
 
-public class CategoryFragment extends Fragment implements MainContract.View{
+public class CategoryFragment extends Fragment implements MainContract.View,AdapterView.OnItemClickListener {
 
     MainContract.Presenter mPresenter;
     ListView listView;
@@ -48,11 +52,14 @@ public class CategoryFragment extends Fragment implements MainContract.View{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_category,container,false);
         listView = view.findViewById(R.id.listview);
+        listView.setOnItemClickListener(this);
 
         mPresenter = new MainPresenter(this);
         mPresenter.loadCategories();
         return view;
     }
+
+
 
     @Override
     public void showProgressBar() {
@@ -75,5 +82,39 @@ public class CategoryFragment extends Fragment implements MainContract.View{
         listView.setAdapter(categoryAdapter);
     }
 
+    @Override
+    public void updateListProductById(List<Product> productList) {
 
+    }
+
+    @Override
+    public void login(User userList) {
+
+    }
+
+    @Override
+    public void details(Profle profleList) {
+
+    }
+
+    @Override
+    public void logout(User userList) {
+
+    }
+
+    @Override
+    public void register(Profle profleRegiser) {
+
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(getActivity(), ProductByIdActivity.class);
+        int category_id = CategoryRepository.categories.get(position).getId();
+        String category_name = CategoryRepository.categories.get(position).getName();
+        intent.putExtra("category_id",String.valueOf(category_id));
+        intent.putExtra("category_name", category_name);
+        startActivity(intent);
+    }
 }

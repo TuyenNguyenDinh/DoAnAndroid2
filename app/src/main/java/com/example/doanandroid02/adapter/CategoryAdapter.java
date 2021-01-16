@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.doanandroid02.R;
-import com.example.myapplicationbottmi.models.Category;
+import com.example.doanandroid02.models.Category;
 
 import java.util.List;
 

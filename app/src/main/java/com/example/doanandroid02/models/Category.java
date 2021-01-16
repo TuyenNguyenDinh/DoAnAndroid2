@@ -1,4 +1,4 @@
-package com.example.myapplicationbottmi.models;
+package com.example.doanandroid02.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
