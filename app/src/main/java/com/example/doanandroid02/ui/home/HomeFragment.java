@@ -19,6 +19,8 @@ import com.example.doanandroid02.activity.MainPresenter;
 import com.example.doanandroid02.adapter.NewProductAdapter;
 import com.example.doanandroid02.models.Category;
 import com.example.doanandroid02.models.Product;
+import com.example.doanandroid02.models.Profle;
+import com.example.doanandroid02.models.User;
 
 import java.util.List;
 
@@ -75,6 +77,26 @@ public class HomeFragment extends Fragment implements MainContract.View {
 
     @Override
     public void updateListProductById(List<Product> productList) {
+
+    }
+
+    @Override
+    public void login(User userList) {
+
+    }
+
+    @Override
+    public void details(Profle profleList) {
+
+    }
+
+    @Override
+    public void logout(User userList) {
+
+    }
+
+    @Override
+    public void register(Profle profleRegiser) {
 
     }
 
