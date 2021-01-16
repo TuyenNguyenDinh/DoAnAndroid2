@@ -3,6 +3,6 @@
     <string name="title_category">Category</string>
     <string name="title_home">Home</string>
     <string name="title_product">All Product</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_user">User</string>
     <string name="text_hint"><b>Search...</b></string>
 </resources>
