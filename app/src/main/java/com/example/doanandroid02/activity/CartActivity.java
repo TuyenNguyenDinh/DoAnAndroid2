@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,6 +54,9 @@ public class CartActivity extends AppCompatActivity {
                 return true;
             default:
                 break;
+            case R.id.check:
+                CheckoutDialog checkoutDialog = new CheckoutDialog(this);
+                checkoutDialog.show();
         }
         return super.onOptionsItemSelected(item);
     }

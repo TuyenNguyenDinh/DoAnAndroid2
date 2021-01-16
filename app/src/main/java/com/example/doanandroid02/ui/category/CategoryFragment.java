@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -16,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 
 import com.example.doanandroid02.R;
+import com.example.doanandroid02.activity.CartActivity;
 import com.example.doanandroid02.activity.MainContract;
 import com.example.doanandroid02.activity.MainPresenter;
 import com.example.doanandroid02.activity.ProductByIdActivity;
@@ -59,6 +61,16 @@ public class CategoryFragment extends Fragment implements MainContract.View,Adap
         return view;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.card:
+                Intent intent = new Intent(getActivity(), CartActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
     @Override
