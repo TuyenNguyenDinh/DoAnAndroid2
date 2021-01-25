@@ -14,8 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.doanandroid02.R;
 import com.example.doanandroid02.adapter.ProductAdapter;
 import com.example.doanandroid02.adapter.ProductByIdAdapter;
+import com.example.doanandroid02.models.Bill;
+import com.example.doanandroid02.models.BillDetail;
 import com.example.doanandroid02.models.Category;
+import com.example.doanandroid02.models.Customer;
 import com.example.doanandroid02.models.Product;
+import com.example.doanandroid02.models.Profile;
+import com.example.doanandroid02.models.User;
 
 import java.util.List;
 
@@ -81,6 +86,46 @@ public class ProductByIdActivity extends AppCompatActivity implements MainContra
 
     @Override
     public void updateListCategories(List<Category> categories) {
+
+    }
+
+    @Override
+    public void updateListProductId(List<Product> productList) {
+
+    }
+
+    @Override
+    public void login(User userList) {
+
+    }
+
+    @Override
+    public void details(Profile profleList) {
+
+    }
+
+    @Override
+    public void logout(User userList) {
+
+    }
+
+    @Override
+    public void register(Profile profleRegiser) {
+
+    }
+
+    @Override
+    public void postCustomer(Customer customer) {
+
+    }
+
+    @Override
+    public void postBill(Bill bill) {
+
+    }
+
+    @Override
+    public void postBillDetail(BillDetail billDetail) {
 
     }
 

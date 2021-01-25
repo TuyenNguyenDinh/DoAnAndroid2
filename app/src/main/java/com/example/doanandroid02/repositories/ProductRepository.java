@@ -1,6 +1,7 @@
 package com.example.doanandroid02.repositories;
 
 
+import com.example.doanandroid02.activity.ProductByIdActivity;
 import com.example.doanandroid02.retrofit.APIService;
 import com.example.doanandroid02.retrofit.DataClient;
 import com.example.doanandroid02.retrofit.RetrofitClientInstance;
@@ -16,6 +17,7 @@ import retrofit2.Retrofit;
 
 public class ProductRepository {
     DataClient api = APIService.getService();
+    String n = ProductByIdActivity.category_id;
     public static List<Product> products;
 
     public void loadAll(DataCallBack<Product> dataCallBack) {
@@ -41,7 +43,25 @@ public class ProductRepository {
     }
 
 
-    void find(int id) {
+    public void findId(DataCallBack<Product> dataCallBack) {
+        api.getProductById(n).enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                List<Product> productsId;
+                productsId = response.body();
+                String item[] = new String[productsId.size()];
+                for (int i = 0; i < productsId.size(); i++) {
+                    item[i] = String.valueOf(productsId.get(i).getId());
+                    item[i] = productsId.get(i).getAnh();
+                    item[i] = productsId.get(i).getTen();
+                    item[i] = String.valueOf(productsId.get(i).getGia_sp());
+                }
+                dataCallBack.response(productsId);
+            }
 
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+            }
+        });
     }
 }

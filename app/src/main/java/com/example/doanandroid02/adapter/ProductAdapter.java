@@ -93,7 +93,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ItemHold
                 int id = ProductRepository.products.get(position).getId();
                 String product_name = ProductRepository.products.get(position).getTen();
                 String product_img = ProductRepository.products.get(position).getAnh();
-                Double product_price = ProductRepository.products.get(position).getGia_sp();
+                long product_price = ProductRepository.products.get(position).getGia_sp();
                 String product_inf = ProductRepository.products.get(position).getThong_tin_cu_the();
 
                 intent.putExtra("id", id);

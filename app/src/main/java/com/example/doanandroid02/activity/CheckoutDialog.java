@@ -42,7 +42,7 @@ public class CheckoutDialog extends Dialog {
         this.btBack = findViewById(R.id.btBack);
         getTotal();
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("USER_FILE.txt",Context.MODE_PRIVATE);
-        int total = sharedPreferences.getInt("total",0);
+        Long total = sharedPreferences.getLong("total",0);
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         textTotalCount.setText((decimalFormat.format(total)) + "VND");
         this.btCheckout.setOnClickListener(new View.OnClickListener() {
@@ -51,8 +51,8 @@ public class CheckoutDialog extends Dialog {
                 if (MainActivity.cartArrayList.size() == 0){
                     Toast.makeText(context, "Try again", Toast.LENGTH_SHORT).show();
                 } else {
-//                    Intent intent = new Intent(getContext(),AddressActivity.class);
-//                    getContext().startActivity(intent);
+                    Intent intent = new Intent(getContext(),AddressActivity.class);
+                    getContext().startActivity(intent);
                 }
             }
         });
@@ -70,7 +70,7 @@ public class CheckoutDialog extends Dialog {
 
     public void getTotal(){
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("USER_FILE.txt",Context.MODE_PRIVATE);
-        sharedPreferences.getInt("total",0);
-        Log.d("TAG", "getTotal: " + sharedPreferences.getInt("total",0));
+        sharedPreferences.getLong("total",0);
+        Log.d("TAG", "getTotal: " + sharedPreferences.getLong("total",0));
     }
 }

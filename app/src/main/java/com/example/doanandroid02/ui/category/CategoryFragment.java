@@ -22,8 +22,13 @@ import com.example.doanandroid02.activity.MainContract;
 import com.example.doanandroid02.activity.MainPresenter;
 import com.example.doanandroid02.activity.ProductByIdActivity;
 import com.example.doanandroid02.adapter.CategoryAdapter;
+import com.example.doanandroid02.models.Bill;
+import com.example.doanandroid02.models.BillDetail;
 import com.example.doanandroid02.models.Category;
+import com.example.doanandroid02.models.Customer;
 import com.example.doanandroid02.models.Product;
+import com.example.doanandroid02.models.Profile;
+import com.example.doanandroid02.models.User;
 import com.example.doanandroid02.repositories.CategoryRepository;
 
 import java.util.List;
@@ -93,9 +98,45 @@ public class CategoryFragment extends Fragment implements MainContract.View,Adap
     }
 
     @Override
-    public void updateListProductById(List<Product> productList) {
+    public void updateListProductId(List<Product> productList) {
 
     }
+
+    @Override
+    public void login(User userList) {
+
+    }
+
+    @Override
+    public void details(Profile profleList) {
+
+    }
+
+    @Override
+    public void logout(User userList) {
+
+    }
+
+    @Override
+    public void register(Profile profleRegiser) {
+
+    }
+
+    @Override
+    public void postCustomer(Customer customer) {
+
+    }
+
+    @Override
+    public void postBill(Bill bill) {
+
+    }
+
+    @Override
+    public void postBillDetail(BillDetail billDetail) {
+
+    }
+
 
 
     @Override

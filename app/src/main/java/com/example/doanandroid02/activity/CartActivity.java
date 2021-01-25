@@ -62,14 +62,14 @@ public class CartActivity extends AppCompatActivity {
     }
 
     public static void countPrice(Context context) {
-        int total = 0;
+        long total = 0;
         for (int i = 0; i < MainActivity.cartArrayList.size(); i++) {
             total += MainActivity.cartArrayList.get(i).getGiasp();
         }
         Log.d("TAG", "countPrice: " + total);
         SharedPreferences sharedPreferences = context.getSharedPreferences("USER_FILE.txt", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("total",total);
+        editor.putLong("total",total);
         editor.commit();
     }
 }
