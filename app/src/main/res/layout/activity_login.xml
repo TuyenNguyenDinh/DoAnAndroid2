@@ -17,10 +17,30 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageViewBackLogin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+                        tools:ignore="VectorDrawableCompat" />
+
+                </LinearLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 android:fontFamily="@font/helveticanowtextextrabold"
                 android:text="Welcome!"
                 android:textAlignment="center"
@@ -44,7 +64,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textEmail"
+                    android:id="@+id/textEmailLogin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/helveticanowtextextmedium"
@@ -65,7 +85,7 @@
             </LinearLayout>
 
             <EditText
-                android:id="@+id/editEmail"
+                android:id="@+id/editEmailLogin"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="20sp"
@@ -82,7 +102,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/textPassw"
+                android:id="@+id/textPasswLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/helveticanowtextextmedium"
@@ -92,7 +112,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/editPassword"
+                android:id="@+id/editPasswordLogin"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="20sp"

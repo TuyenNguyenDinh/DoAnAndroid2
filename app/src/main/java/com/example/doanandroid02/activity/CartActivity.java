@@ -1,17 +1,17 @@
 package com.example.doanandroid02.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doanandroid02.R;
 import com.example.doanandroid02.adapter.CartAdapter;
@@ -68,4 +68,8 @@ public class CartActivity extends AppCompatActivity {
         editor.putInt("total",total);
         editor.commit();
     }
+
+//    new SweetAlertDialog(MainActivity.this);
+//    .setTitleText("Success!");
+//    .show();
 }
