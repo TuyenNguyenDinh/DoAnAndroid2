@@ -1,11 +1,5 @@
 package com.example.doanandroid02.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +7,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doanandroid02.R;
 import com.example.doanandroid02.adapter.CartAdapter;
@@ -62,14 +62,18 @@ public class CartActivity extends AppCompatActivity {
     }
 
     public static void countPrice(Context context) {
-        int total = 0;
+        long total = 0;
         for (int i = 0; i < MainActivity.cartArrayList.size(); i++) {
             total += MainActivity.cartArrayList.get(i).getGiasp();
         }
         Log.d("TAG", "countPrice: " + total);
         SharedPreferences sharedPreferences = context.getSharedPreferences("USER_FILE.txt", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("total",total);
+        editor.putLong("total",total);
         editor.commit();
     }
+
+//    new SweetAlertDialog(MainActivity.this);
+//    .setTitleText("Success!");
+//    .show();
 }

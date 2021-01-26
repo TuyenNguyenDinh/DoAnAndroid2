@@ -31,7 +31,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     TextView textChiTietSp;
     ImageView imgChiTietSp;
     Button btAddCard;
-    private static Double price;
+    private static Long price;
     public static int id;
     public static String name;
     public static String img;
@@ -57,12 +57,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         btAddCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int soluong = 1;
-                Double newprice = soluong * price;
-                Cart cart = new Cart(id, name, newprice, soluong,img);
-                MainActivity.cartArrayList.add(cart);
-                PrefConfig.writeList(getApplicationContext(), MainActivity.cartArrayList);
-                Toast.makeText(ProductDetailsActivity.this, "Add success", Toast.LENGTH_SHORT).show();
+                card();
             }
         });
     }
@@ -94,7 +89,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         id = intent.getIntExtra("id", 0);
         name = intent.getStringExtra("name");
-        price = intent.getDoubleExtra("price", 0);
+        price = intent.getLongExtra("price", 0);
         String info = intent.getStringExtra("info");
         img = intent.getStringExtra("img");
 
@@ -102,6 +97,42 @@ public class ProductDetailsActivity extends AppCompatActivity {
         textGiaChiTietSp.setText(decimalFormat.format(price) + "VND");
         textChiTietSp.setText(Html.fromHtml(info));
         Picasso.with(getApplicationContext()).load("http://192.168.56.1/doan-laravel/public/upload/" + img).into(imgChiTietSp);
+    }
+
+    public void card() {
+        if (MainActivity.cartArrayList.size() > 0) {
+            int soln = 1;
+            boolean exist = false; // tạo đk tồn tại sản phẩm
+            for (int i = 0; i < MainActivity.cartArrayList.size(); i++) {
+                if (id == MainActivity.cartArrayList.get(i).getIdsp()) {
+                    // Nếu sp cùng id vs sp trong mảng thì tiến hành cập nhật giá và sl
+
+                    MainActivity.cartArrayList.get(i).setSoluongsp(MainActivity.cartArrayList.get(i).getSoluongsp() + soln);
+                    MainActivity.cartArrayList.get(i).setGiasp(price * MainActivity.cartArrayList.get(i).getSoluongsp());
+                    Toast.makeText(ProductDetailsActivity.this, "update success", Toast.LENGTH_SHORT).show();
+                    PrefConfig.writeList(getApplicationContext(),MainActivity.cartArrayList);
+                    exist = true;
+                }
+            }
+
+            if (exist == false) {
+                // Nếu không thì tiến hàng thêm mới
+                int soluong = 1;
+                Long newprice = soluong * price;
+                Cart cart = new Cart(id, name, newprice, soluong, img);
+                MainActivity.cartArrayList.add(cart);
+                PrefConfig.writeList(getApplicationContext(), MainActivity.cartArrayList);
+                Toast.makeText(ProductDetailsActivity.this, "add success", Toast.LENGTH_SHORT).show();
+            }
+
+        } else {
+            int soluong = 1;
+            Long newprice = soluong * price;
+            Cart cart = new Cart(id, name, newprice, soluong, img);
+            MainActivity.cartArrayList.add(cart);
+            PrefConfig.writeList(getApplicationContext(), MainActivity.cartArrayList);
+            Toast.makeText(ProductDetailsActivity.this, "add success", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

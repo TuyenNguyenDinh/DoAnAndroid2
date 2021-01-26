@@ -13,9 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClientInstance {
 
-//    private static final String BASE_URL = "http://10.0.2.2/doan-laravel/public/";
     private static Retrofit retrofit = null;
-//    private static Gson gson;
 
 
     public static Retrofit getClient(String base_url){
