@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.example.doanandroid02.R;
 import com.example.doanandroid02.models.Category;
@@ -28,6 +30,7 @@ public class LoginActivity extends AppCompatActivity implements MainContract.Vie
     public static String username;
     public static String password;
     public static SharedPreferences sharedPreferences;
+    ImageView imageViewBackLogin;
 
 
     @Override
@@ -35,13 +38,11 @@ public class LoginActivity extends AppCompatActivity implements MainContract.Vie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
-
-        editEmail = findViewById(R.id.editEmail);
-        editPassword = findViewById(R.id.editPassword);
+        editEmail = findViewById(R.id.editEmailLogin);
+        editPassword = findViewById(R.id.editPasswordLogin);
         textSignup = findViewById(R.id.tv_sign_up);
         btLogin = findViewById(R.id.btLogin);
+        imageViewBackLogin = findViewById(R.id.imageViewBackLogin);
         mPresenter = new MainPresenter(this);
 
         btLogin.setOnClickListener(new View.OnClickListener() {
@@ -64,8 +65,16 @@ public class LoginActivity extends AppCompatActivity implements MainContract.Vie
             }
         });
 
+        imageViewBackLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
+
 
     @Override
     public void showProgressBar() {

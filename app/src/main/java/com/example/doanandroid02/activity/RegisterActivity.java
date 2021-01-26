@@ -1,5 +1,6 @@
 package com.example.doanandroid02.activity;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.doanandroid02.R;
 import com.example.doanandroid02.models.Category;
@@ -33,8 +35,8 @@ public class RegisterActivity extends AppCompatActivity implements MainContract.
         signin = findViewById(R.id.tv_sign_up);
         mPresenter = new MainPresenter(this);
         editTextName = findViewById(R.id.editTextName);
-        editTextEmail = findViewById(R.id.editEmail);
-        editTextPass = findViewById(R.id.editPassword);
+        editTextEmail = findViewById(R.id.editEmailRegister);
+        editTextPass = findViewById(R.id.editPasswordRegister);
         editTextConfPass = findViewById(R.id.editConfPass);
         btRegister = findViewById(R.id.btRegister);
 
