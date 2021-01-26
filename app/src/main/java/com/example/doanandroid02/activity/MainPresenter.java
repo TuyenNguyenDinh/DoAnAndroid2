@@ -5,6 +5,7 @@ import com.example.doanandroid02.repositories.CartRepository;
 import com.example.doanandroid02.repositories.CategoryRepository;
 import com.example.doanandroid02.repositories.ProductById;
 import com.example.doanandroid02.repositories.ProductRepository;
+import com.example.doanandroid02.repositories.UserRepository;
 
 public class MainPresenter implements MainContract.Presenter {
     MainContract.View view;
@@ -13,6 +14,7 @@ public class MainPresenter implements MainContract.Presenter {
     ProductById productById;
 //    UserRepository userRepository;
     CartRepository cartRepository;
+    UserRepository userRepository;
 
 
     public MainPresenter(MainContract.View view) {
@@ -20,6 +22,7 @@ public class MainPresenter implements MainContract.Presenter {
         categoryRepository = new CategoryRepository();
         productRepository = new ProductRepository();
         productById = new ProductById();
+        userRepository = new UserRepository();
     }
 
     @Override
@@ -73,6 +76,26 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void postBillDetail() {
         cartRepository.postBillDetail(dataUser -> view.postBillDetail(dataUser));
+    }
+
+    @Override
+    public void login() {
+        userRepository.login(dataUser -> view.login(dataUser));
+    }
+
+    @Override
+    public void details() {
+        userRepository.details(dataUser -> view.details(dataUser));
+    }
+
+    @Override
+    public void logout() {
+        userRepository.logout(dataUser -> view.logout(dataUser));
+    }
+
+    @Override
+    public void register() {
+
     }
 
 }

@@ -27,7 +27,9 @@ import com.example.doanandroid02.models.BillDetail;
 import com.example.doanandroid02.models.Category;
 import com.example.doanandroid02.models.Customer;
 import com.example.doanandroid02.models.Product;
+
 import com.example.doanandroid02.models.Profile;
+
 import com.example.doanandroid02.models.User;
 import com.example.doanandroid02.repositories.CategoryRepository;
 
@@ -108,6 +110,7 @@ public class CategoryFragment extends Fragment implements MainContract.View,Adap
     }
 
     @Override
+  
     public void details(Profile profleList) {
 
     }
@@ -118,6 +121,7 @@ public class CategoryFragment extends Fragment implements MainContract.View,Adap
     }
 
     @Override
+
     public void register(Profile profleRegiser) {
 
     }
@@ -136,6 +140,7 @@ public class CategoryFragment extends Fragment implements MainContract.View,Adap
     public void postBillDetail(BillDetail billDetail) {
 
     }
+
 
 
 

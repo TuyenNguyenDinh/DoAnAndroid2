@@ -7,6 +7,7 @@ import com.example.doanandroid02.models.Category;
 import com.example.doanandroid02.models.Customer;
 import com.example.doanandroid02.models.Product;
 import com.example.doanandroid02.models.Profile;
+
 import com.example.doanandroid02.models.User;
 
 import java.util.List;
@@ -83,5 +84,22 @@ public interface DataClient {
                                     @Field("product_id") int product_id,
                                     @Field("so_luong_mua") int so_luong_mua,
                                     @Field("don_gia") long don_gia);
+
+
+    @POST("api/auth/me")
+    @FormUrlEncoded
+    Call<Profle> getMe(@Field("token") String token);
+
+    @POST("api/auth/logout")
+    @FormUrlEncoded
+    Call<User> checkLogout(@Field("token") String token);
+
+    @POST("api/auth/register")
+    @FormUrlEncoded
+    Call<Profle> register(@Field("name") String name,
+                          @Field("email") String email,
+                          @Field("password") String password,
+                          @Field("c_password") String c_password
+    );
 
 }

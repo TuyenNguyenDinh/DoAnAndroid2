@@ -69,7 +69,6 @@ public class User {
     public void setExpires_in(int expires_in) {
         this.expires_in = expires_in;
     }
-
     @Override
     public String toString() {
         return "User{" +
@@ -80,4 +79,5 @@ public class User {
                 ", expires_in=" + expires_in +
                 '}';
     }
+
 }

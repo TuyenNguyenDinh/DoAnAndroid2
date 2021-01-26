@@ -25,7 +25,9 @@ import com.example.doanandroid02.models.BillDetail;
 import com.example.doanandroid02.models.Category;
 import com.example.doanandroid02.models.Customer;
 import com.example.doanandroid02.models.Product;
+
 import com.example.doanandroid02.models.Profile;
+
 import com.example.doanandroid02.models.User;
 
 import java.util.List;
@@ -105,6 +107,7 @@ public class HomeFragment extends Fragment implements MainContract.View {
     @Override
     public void details(Profile profleList) {
 
+
     }
 
     @Override
@@ -113,6 +116,7 @@ public class HomeFragment extends Fragment implements MainContract.View {
     }
 
     @Override
+
     public void register(Profile profleRegiser) {
 
     }
@@ -131,6 +135,7 @@ public class HomeFragment extends Fragment implements MainContract.View {
     public void postBillDetail(BillDetail billDetail) {
 
     }
+
 
 
 }

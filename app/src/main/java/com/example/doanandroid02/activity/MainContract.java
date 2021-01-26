@@ -7,6 +7,7 @@ import com.example.doanandroid02.models.Category;
 import com.example.doanandroid02.models.Customer;
 import com.example.doanandroid02.models.Product;
 import com.example.doanandroid02.models.Profile;
+
 import com.example.doanandroid02.models.User;
 
 
@@ -27,6 +28,7 @@ public interface MainContract {
         void postCustomer(Customer customer);
         void postBill(Bill bill);
         void postBillDetail(BillDetail billDetail);
+
     }
 
     interface Presenter extends BasePresenter {
@@ -40,5 +42,6 @@ public interface MainContract {
         void postCustomer();
         void postBill();
         void postBillDetail();
+
     }
 }

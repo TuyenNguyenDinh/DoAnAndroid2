@@ -19,7 +19,9 @@ import com.example.doanandroid02.models.BillDetail;
 import com.example.doanandroid02.models.Category;
 import com.example.doanandroid02.models.Customer;
 import com.example.doanandroid02.models.Product;
+
 import com.example.doanandroid02.models.Profile;
+
 import com.example.doanandroid02.models.User;
 
 import java.util.List;
@@ -134,5 +136,25 @@ public class ProductByIdActivity extends AppCompatActivity implements MainContra
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         recyclerView.setAdapter(productByIdAdapter);
+    }
+
+    @Override
+    public void login(User userList) {
+
+    }
+
+    @Override
+    public void details(Profle profleList) {
+
+    }
+
+    @Override
+    public void logout(User userList) {
+
+    }
+
+    @Override
+    public void register(Profle profleRegiser) {
+
     }
 }
