@@ -22,9 +22,14 @@ import com.example.doanandroid02.activity.MainContract;
 import com.example.doanandroid02.activity.MainPresenter;
 import com.example.doanandroid02.activity.ProductByIdActivity;
 import com.example.doanandroid02.adapter.CategoryAdapter;
+import com.example.doanandroid02.models.Bill;
+import com.example.doanandroid02.models.BillDetail;
 import com.example.doanandroid02.models.Category;
+import com.example.doanandroid02.models.Customer;
 import com.example.doanandroid02.models.Product;
-import com.example.doanandroid02.models.Profle;
+
+import com.example.doanandroid02.models.Profile;
+
 import com.example.doanandroid02.models.User;
 import com.example.doanandroid02.repositories.CategoryRepository;
 
@@ -95,7 +100,7 @@ public class CategoryFragment extends Fragment implements MainContract.View,Adap
     }
 
     @Override
-    public void updateListProductById(List<Product> productList) {
+    public void updateListProductId(List<Product> productList) {
 
     }
 
@@ -105,7 +110,8 @@ public class CategoryFragment extends Fragment implements MainContract.View,Adap
     }
 
     @Override
-    public void details(Profle profleList) {
+  
+    public void details(Profile profleList) {
 
     }
 
@@ -115,9 +121,27 @@ public class CategoryFragment extends Fragment implements MainContract.View,Adap
     }
 
     @Override
-    public void register(Profle profleRegiser) {
+
+    public void register(Profile profleRegiser) {
 
     }
+
+    @Override
+    public void postCustomer(Customer customer) {
+
+    }
+
+    @Override
+    public void postBill(Bill bill) {
+
+    }
+
+    @Override
+    public void postBillDetail(BillDetail billDetail) {
+
+    }
+
+
 
 
     @Override

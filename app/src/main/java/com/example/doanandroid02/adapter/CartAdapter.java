@@ -23,7 +23,7 @@ import com.squareup.picasso.Picasso;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ItemHolder>{
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ItemHolder> {
     List<Cart> carts;
     Context context;
 
@@ -96,18 +96,24 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ItemHolder>{
             holder.btTru.setVisibility(View.VISIBLE);
         }
 
+        if (soluong >= 10) {
+            holder.btCong.setVisibility(View.INVISIBLE);
+        } else {
+            holder.btCong.setVisibility(View.VISIBLE);
+        }
+
         holder.btTru.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int soluongmoi = Integer.parseInt((String) holder.quant.getText()) - 1;
                 int soluonght = MainActivity.cartArrayList.get(position).getSoluongsp();
-                Double giaht = MainActivity.cartArrayList.get(position).getGiasp();
+                long giaht = MainActivity.cartArrayList.get(position).getGiasp();
                 MainActivity.cartArrayList.get(position).setSoluongsp(soluongmoi);
 
                 PrefConfig.writeList(context, MainActivity.cartArrayList);
 
                 // Giá mới sẽ bằng tích của giá hiện tại với số lượng mới rồi chia cho số lượng hiện tại
-                Double giamoinhat = (giaht * soluongmoi) / soluonght;
+                long giamoinhat = (giaht * soluongmoi) / soluonght;
                 MainActivity.cartArrayList.get(position).setGiasp(giamoinhat);
 
                 //update lại giá sp
@@ -118,6 +124,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ItemHolder>{
                 if (soluongmoi <= 1) {
                     holder.btTru.setVisibility(View.INVISIBLE);
                 }
+                if (soluongmoi < 10) {
+                    holder.btCong.setVisibility(View.VISIBLE);
+                }
+
             }
         });
 
@@ -126,13 +136,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ItemHolder>{
             public void onClick(View v) {
                 int soluongmoi = Integer.parseInt((String) holder.quant.getText()) + 1;
                 int soluonght = MainActivity.cartArrayList.get(position).getSoluongsp();
-                Double giaht = MainActivity.cartArrayList.get(position).getGiasp();
+                long giaht = MainActivity.cartArrayList.get(position).getGiasp();
                 MainActivity.cartArrayList.get(position).setSoluongsp(soluongmoi);
 
                 PrefConfig.writeList(context, MainActivity.cartArrayList);
 
                 // Giá mới sẽ bằng tích của giá hiện tại với số lượng mới rồi chia cho số lượng hiện tại
-                Double giamoinhat = (giaht * soluongmoi) / soluonght;
+                long giamoinhat = (giaht * soluongmoi) / soluonght;
                 MainActivity.cartArrayList.get(position).setGiasp(giamoinhat);
 
                 //update lại giá sp
@@ -143,6 +153,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ItemHolder>{
                 if (soluongmoi > 1) {
                     holder.btTru.setVisibility(View.VISIBLE);
                 }
+                if (soluongmoi >= 10) {
+                    holder.btCong.setVisibility(View.INVISIBLE);
+                }
+
             }
         });
 

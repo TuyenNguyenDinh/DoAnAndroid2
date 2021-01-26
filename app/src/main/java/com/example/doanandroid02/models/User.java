@@ -29,6 +29,7 @@ public class User {
         this.expires_in = expires_in;
     }
 
+
     public String getEmail() {
         return email;
     }
@@ -68,4 +69,15 @@ public class User {
     public void setExpires_in(int expires_in) {
         this.expires_in = expires_in;
     }
+    @Override
+    public String toString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", access_token='" + access_token + '\'' +
+                ", token_type='" + token_type + '\'' +
+                ", expires_in=" + expires_in +
+                '}';
+    }
+
 }

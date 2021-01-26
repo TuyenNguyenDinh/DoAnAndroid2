@@ -18,7 +18,7 @@ public class Product {
     public String anh;
     @SerializedName("gia_sp")
     @Expose
-    public double gia_sp;
+    public long gia_sp;
     @SerializedName("so_luong")
     @Expose
     public int so_luong;
@@ -26,7 +26,7 @@ public class Product {
     @Expose
     public String thong_tin_cu_the;
 
-    public Product(int id, int category_id, String ten, String anh, double gia_sp, int so_luong, String thong_tin_cu_the) {
+    public Product(int id, int category_id, String ten, String anh, long gia_sp, int so_luong, String thong_tin_cu_the) {
         this.id = id;
         this.category_id = category_id;
         this.ten = ten;
@@ -68,11 +68,11 @@ public class Product {
         this.anh = anh;
     }
 
-    public double getGia_sp() {
+    public long getGia_sp() {
         return gia_sp;
     }
 
-    public void setGia_sp(double gia_sp) {
+    public void setGia_sp(long gia_sp) {
         this.gia_sp = gia_sp;
     }
 

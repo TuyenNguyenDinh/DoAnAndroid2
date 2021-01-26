@@ -1,9 +1,13 @@
 package com.example.doanandroid02.activity;
 import com.example.doanandroid02.BasePresenter;
 import com.example.doanandroid02.BaseView;
+import com.example.doanandroid02.models.Bill;
+import com.example.doanandroid02.models.BillDetail;
 import com.example.doanandroid02.models.Category;
+import com.example.doanandroid02.models.Customer;
 import com.example.doanandroid02.models.Product;
-import com.example.doanandroid02.models.Profle;
+import com.example.doanandroid02.models.Profile;
+
 import com.example.doanandroid02.models.User;
 
 
@@ -16,11 +20,15 @@ public interface MainContract {
         void hideProgressBar();
         void updateListProduct(List<Product> products);
         void updateListCategories(List<Category> categories);
-        void updateListProductById(List<Product> productList);
+        void updateListProductId(List<Product> productList);
         void login(User userList);
-        void details(Profle profleList);
+        void details(Profile profleList);
         void logout(User userList);
-        void register(Profle profleRegiser);
+        void register(Profile profleRegiser);
+        void postCustomer(Customer customer);
+        void postBill(Bill bill);
+        void postBillDetail(BillDetail billDetail);
+
     }
 
     interface Presenter extends BasePresenter {
@@ -31,5 +39,9 @@ public interface MainContract {
         void details();
         void logout();
         void register();
+        void postCustomer();
+        void postBill();
+        void postBillDetail();
+
     }
 }

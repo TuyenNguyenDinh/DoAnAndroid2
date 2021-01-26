@@ -1,6 +1,7 @@
 package com.example.doanandroid02.activity;
 
 
+import com.example.doanandroid02.repositories.CartRepository;
 import com.example.doanandroid02.repositories.CategoryRepository;
 import com.example.doanandroid02.repositories.ProductById;
 import com.example.doanandroid02.repositories.ProductRepository;
@@ -11,6 +12,8 @@ public class MainPresenter implements MainContract.Presenter {
     CategoryRepository categoryRepository;
     ProductRepository productRepository;
     ProductById productById;
+//    UserRepository userRepository;
+    CartRepository cartRepository;
     UserRepository userRepository;
 
 
@@ -36,7 +39,43 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void findProducts() {
-        productById.loadAll(data -> view.updateListProductById(data));
+        productRepository.findId(data -> view.updateListProductId(data));
+    }
+
+
+    @Override
+    public void login() {
+//        userRepository.login(dataUser -> view.login(dataUser));
+    }
+
+    @Override
+    public void details() {
+//        userRepository.details(dataUser -> view.details(dataUser));
+    }
+
+    @Override
+    public void logout() {
+//        userRepository.logout(dataUser -> view.logout(dataUser));
+    }
+
+    @Override
+    public void register() {
+//        userRepository.register(dataUser -> view.register(dataUser));
+    }
+
+    @Override
+    public void postCustomer() {
+        cartRepository.postCustomer(data -> view.postCustomer(data));
+    }
+
+    @Override
+    public void postBill() {
+        cartRepository.postBill(dataUser -> view.postBill(dataUser));
+    }
+
+    @Override
+    public void postBillDetail() {
+        cartRepository.postBillDetail(dataUser -> view.postBillDetail(dataUser));
     }
 
     @Override

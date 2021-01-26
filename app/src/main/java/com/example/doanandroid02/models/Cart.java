@@ -3,11 +3,11 @@ package com.example.doanandroid02.models;
 public class Cart {
     public int idsp;
     public String tensp;
-    public Double giasp;
+    public long giasp;
     public int soluongsp;
     public String img;
 
-    public Cart(int idsp, String tensp, Double giasp, int soluongsp, String img) {
+    public Cart(int idsp, String tensp, long giasp, int soluongsp, String img) {
         this.idsp = idsp;
         this.tensp = tensp;
         this.giasp = giasp;
@@ -31,11 +31,11 @@ public class Cart {
         this.tensp = tensp;
     }
 
-    public Double getGiasp() {
+    public long getGiasp() {
         return giasp;
     }
 
-    public void setGiasp(Double giasp) {
+    public void setGiasp(long giasp) {
         this.giasp = giasp;
     }
 
