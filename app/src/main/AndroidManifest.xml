@@ -15,8 +15,7 @@
         android:theme="@style/Theme.DoAnAndroid02">
         <activity
             android:name=".activity.PayActivity"
-            android:label="@string/title_activity_pay"
-            android:theme="@style/Theme.DoAnAndroid02.NoActionBar"></activity>
+            android:label="@string/title_activity_pay"></activity>
         <activity android:name=".activity.AddressActivity" />
 
         <activity android:name=".activity.RegisterActivity"></activity>

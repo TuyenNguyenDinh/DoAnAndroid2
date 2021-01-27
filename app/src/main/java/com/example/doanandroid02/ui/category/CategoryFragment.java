@@ -10,14 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 
+import com.example.doanandroid02.CheckLoginRemember;
 import com.example.doanandroid02.R;
 import com.example.doanandroid02.activity.CartActivity;
+import com.example.doanandroid02.activity.LoginActivity;
 import com.example.doanandroid02.activity.MainContract;
 import com.example.doanandroid02.activity.MainPresenter;
 import com.example.doanandroid02.activity.ProductByIdActivity;
@@ -40,6 +43,7 @@ public class CategoryFragment extends Fragment implements MainContract.View,Adap
     MainContract.Presenter mPresenter;
     ListView listView;
     CategoryAdapter categoryAdapter;
+    ProgressBar progressBar;
 
 
     @Override
@@ -58,9 +62,9 @@ public class CategoryFragment extends Fragment implements MainContract.View,Adap
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_category,container,false);
+        progressBar = view.findViewById(R.id.progressCate);
         listView = view.findViewById(R.id.listview);
         listView.setOnItemClickListener(this);
-
         mPresenter = new MainPresenter(this);
         mPresenter.loadCategories();
         return view;
@@ -70,8 +74,13 @@ public class CategoryFragment extends Fragment implements MainContract.View,Adap
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.card:
-                Intent intent = new Intent(getActivity(), CartActivity.class);
-                startActivity(intent);
+                if(CheckLoginRemember.checkLoginRemember(getActivity().getApplicationContext())>0){
+                    Intent intent = new Intent(getActivity(), CartActivity.class);
+                    startActivity(intent);
+                }else {
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -80,12 +89,12 @@ public class CategoryFragment extends Fragment implements MainContract.View,Adap
 
     @Override
     public void showProgressBar() {
-
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
@@ -95,6 +104,8 @@ public class CategoryFragment extends Fragment implements MainContract.View,Adap
 
     @Override
     public void updateListCategories(List<Category> categories) {
+        showProgressBar();
+        hideProgressBar();
         categoryAdapter = new CategoryAdapter(categories, getActivity());
         listView.setAdapter(categoryAdapter);
     }

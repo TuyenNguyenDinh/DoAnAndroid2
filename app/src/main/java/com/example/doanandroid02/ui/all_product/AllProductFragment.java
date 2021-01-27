@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,8 +16,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.doanandroid02.CheckLoginRemember;
 import com.example.doanandroid02.R;
 import com.example.doanandroid02.activity.CartActivity;
+import com.example.doanandroid02.activity.LoginActivity;
 import com.example.doanandroid02.activity.MainContract;
 import com.example.doanandroid02.activity.MainPresenter;
 import com.example.doanandroid02.adapter.ProductAdapter;
@@ -36,6 +39,7 @@ public class AllProductFragment extends Fragment implements MainContract.View {
     RecyclerView recyclerView;
     ProductAdapter productAdapter;
     MainContract.Presenter mPresenter;
+    ProgressBar progressBar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +59,7 @@ public class AllProductFragment extends Fragment implements MainContract.View {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_product, container, false);
+        progressBar = view.findViewById(R.id.progressProduct);
         recyclerView = view.findViewById(R.id.recyclerview);
         mPresenter = new MainPresenter(this);
         mPresenter.loadProducts();
@@ -63,16 +68,18 @@ public class AllProductFragment extends Fragment implements MainContract.View {
 
     @Override
     public void showProgressBar() {
-
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void updateListProduct(List<Product> products) {
+        showProgressBar();
+        hideProgressBar();
         productAdapter = new ProductAdapter(products, getActivity());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
@@ -83,8 +90,13 @@ public class AllProductFragment extends Fragment implements MainContract.View {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.card:
-                Intent intent = new Intent(getActivity(), CartActivity.class);
-                startActivity(intent);
+                if(CheckLoginRemember.checkLoginRemember(getActivity().getApplicationContext())>0){
+                    Intent intent = new Intent(getActivity(), CartActivity.class);
+                    startActivity(intent);
+                }else {
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);

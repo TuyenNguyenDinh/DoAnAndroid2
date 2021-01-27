@@ -34,7 +34,6 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class PayActivity extends AppCompatActivity implements MainContract.View {
-
     RecyclerView recyclerView;
     TextView textTotalPrice, totalBill, textNameRecipient, textEmail, textPhoneNumber, textAddressRecipient;
     public static EditText editMessages;
@@ -43,7 +42,6 @@ public class PayActivity extends AppCompatActivity implements MainContract.View 
     MainContract.Presenter mPresenter;
     public static SharedPreferences sharedPreferences;
     public static String fullname, email, address, phonenumber, notes;
-    private static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +49,6 @@ public class PayActivity extends AppCompatActivity implements MainContract.View 
         setContentView(R.layout.activity_pay);
         mPresenter = new MainPresenter(this);
 
-        PayActivity.context = getApplicationContext();
 
         sharedPreferences = getSharedPreferences("USER_FILE.txt", MODE_PRIVATE);
         recyclerView = findViewById(R.id.rvPay);
@@ -66,6 +63,8 @@ public class PayActivity extends AppCompatActivity implements MainContract.View 
 
         getDataAddress();
 
+        mPresenter.postCustomer();
+
         Long total = sharedPreferences.getLong("total", 0);
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         textTotalPrice.setText(decimalFormat.format(total) + "VND");
@@ -77,7 +76,6 @@ public class PayActivity extends AppCompatActivity implements MainContract.View 
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
         recyclerView.setAdapter(totalItemAdapter);
 
-//        mPresenter.postCustomer();
 
         btPay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,9 +85,6 @@ public class PayActivity extends AppCompatActivity implements MainContract.View 
         });
     }
 
-    public static Context getAppContext() {
-        return PayActivity.context;
-    }
 
     public void getDataAddress() {
         Intent intent = getIntent();
@@ -152,20 +147,19 @@ public class PayActivity extends AppCompatActivity implements MainContract.View 
     @Override
     public void postCustomer(Customer customer) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("id_product", customer.id);
+        editor.putInt("id_customer", customer.id);
         editor.putString("address", customer.dia_chi);
         editor.commit();
+//        Log.d("TAG", "postCustomer: " + customer.toString());
         Toast.makeText(this, "upload successfully", Toast.LENGTH_SHORT).show();
-
     }
 
     @Override
     public void postBill(Bill bill) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("id_bill",bill.id);
+        editor.putInt("id_bill",bill.getId());
         editor.commit();
         mPresenter.postBillDetail();
-
     }
 
     @Override

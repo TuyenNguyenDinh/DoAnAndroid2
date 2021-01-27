@@ -3,6 +3,7 @@ package com.example.doanandroid02.activity;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,12 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import com.example.doanandroid02.R;
+import com.example.doanandroid02.models.Bill;
+import com.example.doanandroid02.models.BillDetail;
 import com.example.doanandroid02.models.Category;
+import com.example.doanandroid02.models.Customer;
 import com.example.doanandroid02.models.Product;
-import com.example.doanandroid02.models.Profle;
+import com.example.doanandroid02.models.Profile;
 import com.example.doanandroid02.models.User;
 
 import java.util.List;
@@ -30,6 +33,7 @@ public class LoginActivity extends AppCompatActivity implements MainContract.Vie
     public static String username;
     public static String password;
     public static SharedPreferences sharedPreferences;
+    public static Context context;
     ImageView imageViewBackLogin;
 
 
@@ -37,6 +41,11 @@ public class LoginActivity extends AppCompatActivity implements MainContract.Vie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
+        LoginActivity.context = getApplicationContext();
 
         editEmail = findViewById(R.id.editEmailLogin);
         editPassword = findViewById(R.id.editPasswordLogin);
@@ -75,6 +84,10 @@ public class LoginActivity extends AppCompatActivity implements MainContract.Vie
 
     }
 
+    public static Context getAppContext() {
+        return LoginActivity.context;
+    }
+
 
     @Override
     public void showProgressBar() {
@@ -97,9 +110,10 @@ public class LoginActivity extends AppCompatActivity implements MainContract.Vie
     }
 
     @Override
-    public void updateListProductById(List<Product> productList) {
+    public void updateListProductId(List<Product> productList) {
 
     }
+
 
     @Override
     public void login(User userList) {
@@ -110,10 +124,12 @@ public class LoginActivity extends AppCompatActivity implements MainContract.Vie
     }
 
     @Override
-    public void details(Profle profleList) {
+    public void details(Profile profleList) {
+        int id = profleList.getId();
         String name = profleList.getName();
-        rememberName(name);
+        rememberName(id,name);
     }
+
 
     @Override
     public void logout(User userList) {
@@ -121,14 +137,31 @@ public class LoginActivity extends AppCompatActivity implements MainContract.Vie
     }
 
     @Override
-    public void register(Profle profleRegiser) {
+    public void register(Profile profleRegiser) {
 
     }
 
-    public void rememberName(String username) {
+    @Override
+    public void postCustomer(Customer customer) {
+
+    }
+
+    @Override
+    public void postBill(Bill bill) {
+
+    }
+
+    @Override
+    public void postBillDetail(BillDetail billDetail) {
+
+    }
+
+
+    public void rememberName(int id, String username) {
         sharedPreferences = getSharedPreferences("USER_FILE.txt", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("username", username);
+        editor.putInt("user_id", id);
         editor.commit();
     }
 

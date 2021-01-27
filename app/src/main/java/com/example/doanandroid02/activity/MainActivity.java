@@ -24,7 +24,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public static BottomNavigationView navView;
-    public static ProgressDialog loading;
     public static List<Cart> cartArrayList;
 
     @Override
@@ -38,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
                 R.id.navigation_category, R.id.navigation_product, R.id.navigation_user)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
         cartArrayList = PrefConfig.readList(this);
         if (cartArrayList != null) {
 
@@ -47,6 +46,5 @@ public class MainActivity extends AppCompatActivity {
             cartArrayList = new ArrayList<>();
         }
     }
-
 
 }

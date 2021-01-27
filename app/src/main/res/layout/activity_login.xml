@@ -85,6 +85,7 @@
             </LinearLayout>
 
             <EditText
+                android:maxLines="1"
                 android:id="@+id/editEmailLogin"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -112,6 +113,7 @@
                 android:textSize="20sp" />
 
             <EditText
+                android:maxLines="1"
                 android:id="@+id/editPasswordLogin"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"

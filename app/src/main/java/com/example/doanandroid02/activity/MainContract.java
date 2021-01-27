@@ -22,9 +22,9 @@ public interface MainContract {
         void updateListCategories(List<Category> categories);
         void updateListProductId(List<Product> productList);
         void login(User userList);
-        void details(Profile profleList);
+        void details(Profile profileList);
         void logout(User userList);
-        void register(Profile profleRegiser);
+        void register(Profile profileRegiser);
         void postCustomer(Customer customer);
         void postBill(Bill bill);
         void postBillDetail(BillDetail billDetail);
