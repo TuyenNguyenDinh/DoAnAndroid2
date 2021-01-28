@@ -122,6 +122,11 @@ public class RegisterActivity extends AppCompatActivity implements MainContract.
     }
 
     @Override
+    public void searchProduct(List<Product> products) {
+
+    }
+
+    @Override
     public void register(Profile profleRegiser) {
         Toast.makeText(this, "Register successfully, you can login now ", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(RegisterActivity.this, MainActivity.class);

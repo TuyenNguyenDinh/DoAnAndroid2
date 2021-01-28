@@ -16,7 +16,6 @@ public class MainPresenter implements MainContract.Presenter {
     CartRepository cartRepository;
     UserRepository userRepository;
 
-
     public MainPresenter(MainContract.View view) {
         this.view = view;
         categoryRepository = new CategoryRepository();
@@ -24,6 +23,7 @@ public class MainPresenter implements MainContract.Presenter {
         productById = new ProductById();
         userRepository = new UserRepository();
         cartRepository = new CartRepository();
+
     }
 
     @Override
@@ -44,6 +44,7 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
 
+
     @Override
     public void postCustomer() {
         cartRepository.postCustomer(dataUser -> view.postCustomer(dataUser));
@@ -57,6 +58,11 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void postBillDetail() {
         cartRepository.postBillDetail(dataUser -> view.postBillDetail(dataUser));
+    }
+
+    @Override
+    public void searchProduct() {
+        productRepository.searchProduct(data -> view.searchProduct(data));
     }
 
     @Override
@@ -78,5 +84,7 @@ public class MainPresenter implements MainContract.Presenter {
     public void register() {
     userRepository.register(dataUser -> view.register(dataUser));
     }
+
+
 
 }

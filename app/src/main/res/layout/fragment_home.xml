@@ -25,10 +25,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:weightSum="10">
 
                 <EditText
-                    android:layout_width="match_parent"
+                    android:id="@+id/editSearch"
+                    android:layout_width="0dp"
+                    android:layout_weight="10"
                     android:layout_height="match_parent"
                     android:maxLines="1"
                     android:inputType="text"
@@ -36,6 +39,11 @@
                     android:hint="@string/text_hint"
                     android:paddingLeft="10dp"
                     android:textStyle="bold" />
+                <Button
+                    android:id="@+id/btSearch"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ic_baseline_search_24"/>
             </LinearLayout>
 
             <androidx.cardview.widget.CardView

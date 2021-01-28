@@ -18,6 +18,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface DataClient {
 
@@ -85,4 +86,6 @@ public interface DataClient {
                                     @Field("product_id") int product_id,
                                     @Field("so_luong_mua") int so_luong_mua,
                                     @Field("don_gia") long don_gia);
+    @GET("api/products/search")
+    Call<List<Product>> searchProduct(@Query("q") String q);
 }

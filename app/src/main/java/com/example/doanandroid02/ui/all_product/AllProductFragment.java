@@ -150,9 +150,10 @@ public class AllProductFragment extends Fragment implements MainContract.View {
 
     }
 
+    @Override
+    public void searchProduct(List<Product> products) {
 
-
-
+    }
 
 
 }

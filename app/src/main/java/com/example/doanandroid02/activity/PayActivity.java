@@ -166,4 +166,9 @@ public class PayActivity extends AppCompatActivity implements MainContract.View 
     public void postBillDetail(BillDetail billDetail) {
         Log.d("TAG", "postBillDetail: ");
     }
+
+    @Override
+    public void searchProduct(List<Product> products) {
+
+    }
 }
