@@ -1,4 +1,4 @@
-package com.example.doanandroid02.ui.category;
+package com.example.doanandroid02.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,43 +8,39 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doanandroid02.CheckLoginRemember;
 import com.example.doanandroid02.R;
-import com.example.doanandroid02.activity.CartActivity;
-import com.example.doanandroid02.activity.LoginActivity;
-import com.example.doanandroid02.activity.MainContract;
-import com.example.doanandroid02.activity.MainPresenter;
-import com.example.doanandroid02.activity.ProductByIdActivity;
-import com.example.doanandroid02.adapter.CategoryAdapter;
+import com.example.doanandroid02.adapter.NewProductAdapter;
 import com.example.doanandroid02.models.Bill;
 import com.example.doanandroid02.models.BillDetail;
 import com.example.doanandroid02.models.Category;
 import com.example.doanandroid02.models.Customer;
 import com.example.doanandroid02.models.Product;
-
 import com.example.doanandroid02.models.Profile;
-
 import com.example.doanandroid02.models.User;
-import com.example.doanandroid02.repositories.CategoryRepository;
 
 import java.util.List;
 
-public class CategoryFragment extends Fragment implements MainContract.View,AdapterView.OnItemClickListener {
+import static android.view.View.GONE;
 
+public class HomeFragment extends Fragment implements MainContract.View {
+    RecyclerView recyclerView;
+    NewProductAdapter newProductAdapter;
     MainContract.Presenter mPresenter;
-    ListView listView;
-    CategoryAdapter categoryAdapter;
     ProgressBar progressBar;
-
+    Button btSearch;
+    EditText editTextSearch;
+    String searchKey;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,19 +51,7 @@ public class CategoryFragment extends Fragment implements MainContract.View,Adap
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        getActivity().getMenuInflater().inflate(R.menu.menu, menu);
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_category,container,false);
-        progressBar = view.findViewById(R.id.progressCate);
-        listView = view.findViewById(R.id.listview);
-        listView.setOnItemClickListener(this);
-        mPresenter = new MainPresenter(this);
-        mPresenter.loadCategories();
-        return view;
+        getActivity().getMenuInflater().inflate(R.menu.menu_main, menu);
     }
 
     @Override
@@ -86,6 +70,26 @@ public class CategoryFragment extends Fragment implements MainContract.View,Adap
         return super.onOptionsItemSelected(item);
     }
 
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        recyclerView = view.findViewById(R.id.recyclerviewHome);
+        progressBar = view.findViewById(R.id.progressHome);
+        mPresenter = new MainPresenter(this);
+        mPresenter.loadProducts();
+        editTextSearch = view.findViewById(R.id.editSearch);
+        btSearch = view.findViewById(R.id.btSearch);
+        btSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchKey = editTextSearch.getText().toString();
+                Intent intent = new Intent(getActivity(), SearchResult.class);
+                intent.putExtra("searchKey",searchKey);
+                startActivity(intent);
+            }
+        });
+
+        return view;
+    }
 
     @Override
     public void showProgressBar() {
@@ -94,20 +98,22 @@ public class CategoryFragment extends Fragment implements MainContract.View,Adap
 
     @Override
     public void hideProgressBar() {
-        progressBar.setVisibility(View.GONE);
+        progressBar.setVisibility(GONE);
     }
 
     @Override
     public void updateListProduct(List<Product> products) {
-
+        showProgressBar();
+        hideProgressBar();
+        newProductAdapter = new NewProductAdapter(products, getActivity());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL,false));
+        recyclerView.setAdapter(newProductAdapter);
     }
 
     @Override
     public void updateListCategories(List<Category> categories) {
-        showProgressBar();
-        hideProgressBar();
-        categoryAdapter = new CategoryAdapter(categories, getActivity());
-        listView.setAdapter(categoryAdapter);
+
     }
 
     @Override
@@ -121,8 +127,8 @@ public class CategoryFragment extends Fragment implements MainContract.View,Adap
     }
 
     @Override
-  
     public void details(Profile profleList) {
+
 
     }
 
@@ -155,16 +161,5 @@ public class CategoryFragment extends Fragment implements MainContract.View,Adap
     @Override
     public void searchProduct(List<Product> products) {
 
-    }
-
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(getActivity(), ProductByIdActivity.class);
-        int category_id = CategoryRepository.categories.get(position).getId();
-        String category_name = CategoryRepository.categories.get(position).getName();
-        intent.putExtra("category_id",String.valueOf(category_id));
-        intent.putExtra("category_name", category_name);
-        startActivity(intent);
     }
 }

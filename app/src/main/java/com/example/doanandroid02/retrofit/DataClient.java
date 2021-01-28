@@ -18,8 +18,10 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface DataClient {
+
 
     @GET("api/categories")
     Call<List<Category>> getCategory();
@@ -66,7 +68,7 @@ public interface DataClient {
     @GET("api/customers/{id}")
     Call<Customer> getCustomer(@Path("id") String id);
 
-    @POST("api/bills/create")
+    @POST("api/orders/create")
     @FormUrlEncoded
     Call<Bill> postBill(@Field("customer_id") int customer_id,
                         @Field("ngaylap_hd") String ngaylap_hd,
@@ -78,28 +80,12 @@ public interface DataClient {
     @GET("api/bills/{id}")
     Call<Bill> getBill(@Path("id") String id);
 
-    @POST("api/billdetails/create")
+    @POST("api/orderdetails/create")
     @FormUrlEncoded
     Call<BillDetail> postBillDetail(@Field("bill_id") int bill_id,
                                     @Field("product_id") int product_id,
                                     @Field("so_luong_mua") int so_luong_mua,
                                     @Field("don_gia") long don_gia);
-
-
-    @POST("api/auth/me")
-    @FormUrlEncoded
-    Call<Profle> getMe(@Field("token") String token);
-
-    @POST("api/auth/logout")
-    @FormUrlEncoded
-    Call<User> checkLogout(@Field("token") String token);
-
-    @POST("api/auth/register")
-    @FormUrlEncoded
-    Call<Profle> register(@Field("name") String name,
-                          @Field("email") String email,
-                          @Field("password") String password,
-                          @Field("c_password") String c_password
-    );
-
+    @GET("api/products/search")
+    Call<List<Product>> searchProduct(@Query("q") String q);
 }

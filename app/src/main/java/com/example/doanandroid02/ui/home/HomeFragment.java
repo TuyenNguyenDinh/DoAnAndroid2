@@ -8,6 +8,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,10 +18,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.doanandroid02.CheckLoginRemember;
 import com.example.doanandroid02.R;
 import com.example.doanandroid02.activity.CartActivity;
+import com.example.doanandroid02.activity.LoginActivity;
 import com.example.doanandroid02.activity.MainContract;
 import com.example.doanandroid02.activity.MainPresenter;
+import com.example.doanandroid02.activity.SearchResult;
 import com.example.doanandroid02.adapter.NewProductAdapter;
 import com.example.doanandroid02.models.Bill;
 import com.example.doanandroid02.models.BillDetail;
@@ -32,19 +38,23 @@ import com.example.doanandroid02.models.User;
 
 import java.util.List;
 
+import static android.view.View.GONE;
+
 public class HomeFragment extends Fragment implements MainContract.View {
 
     RecyclerView recyclerView;
     NewProductAdapter newProductAdapter;
     MainContract.Presenter mPresenter;
+    ProgressBar progressBar;
+    Button btSearch;
+    EditText editTextSearch;
+    String searchKey;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
-
-
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -56,8 +66,13 @@ public class HomeFragment extends Fragment implements MainContract.View {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.card:
-                Intent intent = new Intent(getActivity(), CartActivity.class);
-                startActivity(intent);
+              if(CheckLoginRemember.checkLoginRemember(getActivity().getApplicationContext())>0){
+                  Intent intent = new Intent(getActivity(), CartActivity.class);
+                  startActivity(intent);
+              }else {
+                  Intent intent = new Intent(getActivity(), LoginActivity.class);
+                  startActivity(intent);
+              }
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -66,23 +81,37 @@ public class HomeFragment extends Fragment implements MainContract.View {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = view.findViewById(R.id.recyclerviewHome);
+        progressBar = view.findViewById(R.id.progressHome);
         mPresenter = new MainPresenter(this);
         mPresenter.loadProducts();
+        editTextSearch = view.findViewById(R.id.editSearch);
+        btSearch = view.findViewById(R.id.btSearch);
+        btSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchKey = editTextSearch.getText().toString();
+                Intent intent = new Intent(getActivity(), SearchResult.class);
+                intent.putExtra("searchKey",searchKey);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
     @Override
     public void showProgressBar() {
-
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-
+        progressBar.setVisibility(GONE);
     }
 
     @Override
     public void updateListProduct(List<Product> products) {
+        showProgressBar();
+        hideProgressBar();
         newProductAdapter = new NewProductAdapter(products, getActivity());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL,false));
@@ -136,6 +165,10 @@ public class HomeFragment extends Fragment implements MainContract.View {
 
     }
 
+    @Override
+    public void searchProduct(List<Product> products) {
+
+    }
 
 
 }

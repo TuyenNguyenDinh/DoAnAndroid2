@@ -1,10 +1,11 @@
 package com.example.doanandroid02.repositories;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.doanandroid02.activity.LoginActivity;
 import com.example.doanandroid02.activity.RegisterActivity;
-import com.example.doanandroid02.models.Profle;
+import com.example.doanandroid02.models.Profile;
 import com.example.doanandroid02.models.User;
 import com.example.doanandroid02.retrofit.APIService;
 import com.example.doanandroid02.retrofit.DataClient;
@@ -21,7 +22,7 @@ import static com.example.doanandroid02.activity.RegisterActivity.editTextPass;
 import static com.example.doanandroid02.activity.RegisterActivity.editTextConfPass;
 
 
-public class UserRepository {
+public class UserRepository extends LoginActivity{
     DataClient api = APIService.getService();
 
     public void login(DataUserCallBack<User> dataUserCallBack) {
@@ -34,26 +35,27 @@ public class UserRepository {
                             User user = response.body();
                             Log.d("TAG", "onResponse: " + user);
                             dataUserCallBack.user(user);
+                            Toast.makeText(getAppContext(), "login successfully", Toast.LENGTH_SHORT).show();
                             return;
                         } else {
-                            Log.d("TAG", "fail: ");
+                            Toast.makeText(getAppContext(), "Sorry, the credentials you are using are invalid", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
-                        Log.d("TAG", "onFailure: ");
+                        Toast.makeText(getAppContext(), "Fatal error !, could not connect to server", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
-    public void details(DataUserCallBack<Profle> profleDataUserCallBack) {
+    public void details(DataUserCallBack<Profile> profleDataUserCallBack) {
         String token = sharedPreferences.getString("token", "");
-        api.getMe(token).enqueue(new Callback<Profle>() {
+        api.getMe(token).enqueue(new Callback<Profile>() {
             @Override
-            public void onResponse(Call<Profle> call, Response<Profle> response) {
+            public void onResponse(Call<Profile> call, Response<Profile> response) {
                 if (response.isSuccessful()) {
-                    Profle profle = response.body();
+                    Profile profle = response.body();
                     String name = response.body().name;
                     Log.d("TAG", "onResponse: " + name);
                     profleDataUserCallBack.user(profle);
@@ -61,11 +63,10 @@ public class UserRepository {
                 } else {
 
                 }
-
             }
 
             @Override
-            public void onFailure(Call<Profle> call, Throwable t) {
+            public void onFailure(Call<Profile> call, Throwable t) {
 
             }
         });
@@ -87,16 +88,16 @@ public class UserRepository {
         });
     }
 
-    public void register(DataUserCallBack<Profle> registerDataCallBack){
+    public void register(DataUserCallBack<Profile> registerDataCallBack){
         api.register(RegisterActivity.name = editTextName.getText().toString(),
                 RegisterActivity.email = editTextEmail.getText().toString(),
                 RegisterActivity.password = editTextPass.getText().toString(),
                 RegisterActivity.c_password = editTextConfPass.getText().toString())
-                .enqueue(new Callback<Profle>() {
+                .enqueue(new Callback<Profile>() {
                     @Override
-                    public void onResponse(Call<Profle> call, Response<Profle> response) {
+                    public void onResponse(Call<Profile> call, Response<Profile> response) {
                         if (response.isSuccessful()){
-                            Profle user = response.body();
+                            Profile user = response.body();
                             registerDataCallBack.user(user);
                         }else {
                             Log.d("TAG", "fail: " );
@@ -104,7 +105,7 @@ public class UserRepository {
                     }
 
                     @Override
-                    public void onFailure(Call<Profle> call, Throwable t) {
+                    public void onFailure(Call<Profile> call, Throwable t) {
                         Log.d("TAG", "onFailure: ");
                     }
                 });

@@ -17,16 +17,10 @@ public class RetrofitClientInstance {
 
 
     public static Retrofit getClient(String base_url){
-        OkHttpClient okHttpClient = new OkHttpClient.Builder().readTimeout(1000000, TimeUnit.MICROSECONDS)
-                .writeTimeout(1000000, TimeUnit.MICROSECONDS)
-                .connectTimeout(1000000, TimeUnit.MICROSECONDS)
-                .retryOnConnectionFailure(true).protocols(Arrays.asList(Protocol.HTTP_1_1))
-                .build();
         Gson gson = new GsonBuilder().setLenient().create();
 
         retrofit= new Retrofit.Builder()
                 .baseUrl(base_url)
-                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 

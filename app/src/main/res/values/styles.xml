@@ -3,22 +3,12 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
-
     </style>
 
-    <style name="TransparentText" parent="@android:style/TextAppearance">
-        <item name="android:textColor">#00000000</item>
-    </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="headerText" parent="parent">
-        <item name="android:textSize">28sp</item>
-        <item name="android:textColor">#000</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -35,19 +25,29 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
+    <style name="headerText" parent="parent">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">#000</item>
+        <item name="android:textStyle">bold</item>
+    </style>
     <style name="tagTextStyle">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/white</item>
-<!--        <item name="android:background">@drawable/ic_tags_bk</item>-->
+        <!--        <item name="android:background">@drawable/ic_tags_bk</item>-->
         <item name="android:gravity">center</item>
         <item name="android:layout_margin">5dp</item>
         <item name="android:paddingLeft">3dp</item>
         <item name="android:paddingRight">3dp</item>
 
     </style>
+
+    <style name="TransparentText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">#00000000</item>
+    </style>
+
 
     <style name="profileDetailsLayout" parent="parent">
         <item name="android:layout_marginTop">20dp</item>
@@ -79,7 +79,5 @@
         <item name="android:background">#F7F7F7</item>
         <item name="android:layout_marginTop">5dp</item>
     </style>
-
-
 
 </resources>

@@ -1,61 +1,54 @@
 package com.example.doanandroid02.activity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import com.example.doanandroid02.R;
 import com.example.doanandroid02.adapter.ProductAdapter;
-import com.example.doanandroid02.adapter.ProductByIdAdapter;
 import com.example.doanandroid02.models.Bill;
 import com.example.doanandroid02.models.BillDetail;
 import com.example.doanandroid02.models.Category;
 import com.example.doanandroid02.models.Customer;
 import com.example.doanandroid02.models.Product;
-
 import com.example.doanandroid02.models.Profile;
-
 import com.example.doanandroid02.models.User;
 
 import java.util.List;
 
-public class ProductByIdActivity extends AppCompatActivity implements MainContract.View {
-
-
+public class SearchResult extends AppCompatActivity implements MainContract.View{
     RecyclerView recyclerView;
-    ProductByIdAdapter productByIdAdapter;
+    ProductAdapter productAdapter;
     MainContract.Presenter mPresenter;
-    public static String category_id;
-    String category_name;
+    public static String titleSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_by_id);
-
-        Intent intent = getIntent();
-        recyclerView = findViewById(R.id.recyclerViewProductId);
-        category_id = intent.getStringExtra("category_id");
-        category_name = intent.getStringExtra("category_name");
-
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(category_name);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        setContentView(R.layout.activity_search_result);
         mPresenter = new MainPresenter(this);
-        mPresenter.findProducts();
+        recyclerView = findViewById(R.id.rvSearch);
+        getSearchKey();
+        mPresenter.searchProduct();
+    }
+
+    private void getSearchKey() {
+        Intent intent = getIntent();
+        titleSearch = intent.getStringExtra("searchKey");
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(titleSearch);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
+        switch (item.getItemId()){
             case android.R.id.home:
                 onBackPressed();
                 return true;
@@ -63,12 +56,6 @@ public class ProductByIdActivity extends AppCompatActivity implements MainContra
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
     }
 
     @Override
@@ -93,10 +80,7 @@ public class ProductByIdActivity extends AppCompatActivity implements MainContra
 
     @Override
     public void updateListProductId(List<Product> productList) {
-        productByIdAdapter = new ProductByIdAdapter(productList, getApplicationContext());
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
-        recyclerView.setAdapter(productByIdAdapter);
+
     }
 
     @Override
@@ -105,7 +89,7 @@ public class ProductByIdActivity extends AppCompatActivity implements MainContra
     }
 
     @Override
-    public void details(Profile profleList) {
+    public void details(Profile profileList) {
 
     }
 
@@ -115,7 +99,7 @@ public class ProductByIdActivity extends AppCompatActivity implements MainContra
     }
 
     @Override
-    public void register(Profile profleRegiser) {
+    public void register(Profile profileRegiser) {
 
     }
 
@@ -136,7 +120,9 @@ public class ProductByIdActivity extends AppCompatActivity implements MainContra
 
     @Override
     public void searchProduct(List<Product> products) {
-
+        productAdapter = new ProductAdapter(products, getApplicationContext());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
+        recyclerView.setAdapter(productAdapter);
     }
-
 }

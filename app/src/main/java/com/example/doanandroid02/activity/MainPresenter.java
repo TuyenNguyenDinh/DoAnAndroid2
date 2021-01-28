@@ -1,6 +1,7 @@
 package com.example.doanandroid02.activity;
 
 
+import com.example.doanandroid02.models.Cart;
 import com.example.doanandroid02.repositories.CartRepository;
 import com.example.doanandroid02.repositories.CategoryRepository;
 import com.example.doanandroid02.repositories.ProductById;
@@ -12,10 +13,8 @@ public class MainPresenter implements MainContract.Presenter {
     CategoryRepository categoryRepository;
     ProductRepository productRepository;
     ProductById productById;
-//    UserRepository userRepository;
     CartRepository cartRepository;
     UserRepository userRepository;
-
 
     public MainPresenter(MainContract.View view) {
         this.view = view;
@@ -23,6 +22,8 @@ public class MainPresenter implements MainContract.Presenter {
         productRepository = new ProductRepository();
         productById = new ProductById();
         userRepository = new UserRepository();
+        cartRepository = new CartRepository();
+
     }
 
     @Override
@@ -43,29 +44,10 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
 
-    @Override
-    public void login() {
-//        userRepository.login(dataUser -> view.login(dataUser));
-    }
-
-    @Override
-    public void details() {
-//        userRepository.details(dataUser -> view.details(dataUser));
-    }
-
-    @Override
-    public void logout() {
-//        userRepository.logout(dataUser -> view.logout(dataUser));
-    }
-
-    @Override
-    public void register() {
-//        userRepository.register(dataUser -> view.register(dataUser));
-    }
 
     @Override
     public void postCustomer() {
-        cartRepository.postCustomer(data -> view.postCustomer(data));
+        cartRepository.postCustomer(dataUser -> view.postCustomer(dataUser));
     }
 
     @Override
@@ -76,6 +58,11 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void postBillDetail() {
         cartRepository.postBillDetail(dataUser -> view.postBillDetail(dataUser));
+    }
+
+    @Override
+    public void searchProduct() {
+        productRepository.searchProduct(data -> view.searchProduct(data));
     }
 
     @Override
@@ -95,7 +82,9 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void register() {
-
+    userRepository.register(dataUser -> view.register(dataUser));
     }
+
+
 
 }

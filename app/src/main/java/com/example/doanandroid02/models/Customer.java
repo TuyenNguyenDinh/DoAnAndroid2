@@ -3,7 +3,8 @@ package com.example.doanandroid02.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Customer { @SerializedName("id")
+public class Customer {
+    @SerializedName("id")
 @Expose
 public int id;
     @SerializedName("name")

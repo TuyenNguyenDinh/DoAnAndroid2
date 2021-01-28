@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.doanandroid02.CheckLoginRemember;
 import com.example.doanandroid02.PrefConfig;
 import com.example.doanandroid02.R;
 import com.example.doanandroid02.models.Cart;
@@ -42,9 +43,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(null);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+       ActionBar actionBar = getSupportActionBar();
+       actionBar.setTitle(null);
+       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         textTenChiTietSp = findViewById(R.id.textTenChiTietSp);
         textGiaChiTietSp = findViewById(R.id.textGiaChiTietSp);
@@ -57,7 +58,12 @@ public class ProductDetailsActivity extends AppCompatActivity {
         btAddCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                card();
+                if(CheckLoginRemember.checkLoginRemember(getApplicationContext())>0){
+                    card();
+                }else {
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -71,8 +77,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
             default:
                 break;
             case R.id.card:
-                Intent intent = new Intent(getApplicationContext(), CartActivity.class);
-                startActivity(intent);
+                if(CheckLoginRemember.checkLoginRemember(getApplicationContext())>0){
+                    Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+                    startActivity(intent);
+                }else {
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent);
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -96,7 +107,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         textTenChiTietSp.setText(name);
         textGiaChiTietSp.setText(decimalFormat.format(price) + "VND");
         textChiTietSp.setText(Html.fromHtml(info));
-        Picasso.with(getApplicationContext()).load("http://192.168.56.1/doan-laravel/public/upload/" + img).into(imgChiTietSp);
+        Picasso.with(getApplicationContext()).load("http://192.168.13.2/doan-laravel/public/upload/" + img).into(imgChiTietSp);
     }
 
     public void card() {

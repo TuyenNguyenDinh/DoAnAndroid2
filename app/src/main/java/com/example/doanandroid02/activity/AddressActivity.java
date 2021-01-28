@@ -68,23 +68,30 @@ public class AddressActivity extends AppCompatActivity implements MainContract.V
     }
 
     public void checkError() {
+
         if (textFullName.getText().toString().length() == 0 || textNumberPhone.getText().toString().length() == 0
                 || textFullAddress.getText().toString().length() == 0) {
             textFullName.setError("Name is required!");
             textNumberPhone.setError("Phone is required");
             textEmailAddr.setError("Email is required");
             textFullAddress.setError("Address is required");
+
         } else {
             fullname = textFullName.getText().toString();
             numberphone = textNumberPhone.getText().toString();
             email = textEmailAddr.getText().toString();
             address = textFullAddress.getText().toString();
-            Intent intent = new Intent(AddressActivity.this, PayActivity.class);
-            intent.putExtra("fullname", fullname);
-            intent.putExtra("numberphone", numberphone);
-            intent.putExtra("email", email);
-            intent.putExtra("address", address);
-            startActivity(intent);
+            try {
+                Integer.parseInt(numberphone);
+                textNumberPhone.setError("invalid format");
+            } catch (NumberFormatException e) {
+                Intent intent = new Intent(AddressActivity.this, PayActivity.class);
+                intent.putExtra("fullname", fullname);
+                intent.putExtra("numberphone", numberphone);
+                intent.putExtra("email", email);
+                intent.putExtra("address", address);
+                startActivity(intent);
+            }
         }
     }
 
@@ -145,6 +152,11 @@ public class AddressActivity extends AppCompatActivity implements MainContract.V
 
     @Override
     public void postBillDetail(BillDetail billDetail) {
+
+    }
+
+    @Override
+    public void searchProduct(List<Product> products) {
 
     }
 }

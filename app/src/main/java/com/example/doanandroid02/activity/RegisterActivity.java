@@ -10,12 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.doanandroid02.R;
+import com.example.doanandroid02.models.Bill;
+import com.example.doanandroid02.models.BillDetail;
 import com.example.doanandroid02.models.Category;
+import com.example.doanandroid02.models.Customer;
 import com.example.doanandroid02.models.Product;
-import com.example.doanandroid02.models.Profle;
+import com.example.doanandroid02.models.Profile;
 import com.example.doanandroid02.models.User;
 
 import java.util.List;
@@ -31,6 +33,9 @@ public class RegisterActivity extends AppCompatActivity implements MainContract.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         signin = findViewById(R.id.tv_sign_up);
         mPresenter = new MainPresenter(this);
@@ -79,9 +84,10 @@ public class RegisterActivity extends AppCompatActivity implements MainContract.
     }
 
     @Override
-    public void updateListProductById(List<Product> productList) {
+    public void updateListProductId(List<Product> productList) {
 
     }
+
 
     @Override
     public void login(User userList) {
@@ -89,17 +95,39 @@ public class RegisterActivity extends AppCompatActivity implements MainContract.
     }
 
     @Override
-    public void details(Profle profleList) {
+    public void details(Profile profileList) {
 
     }
+
 
     @Override
     public void logout(User userList) {
 
     }
 
+
     @Override
-    public void register(Profle profleRegiser) {
+    public void postCustomer(Customer customer) {
+
+    }
+
+    @Override
+    public void postBill(Bill bill) {
+
+    }
+
+    @Override
+    public void postBillDetail(BillDetail billDetail) {
+
+    }
+
+    @Override
+    public void searchProduct(List<Product> products) {
+
+    }
+
+    @Override
+    public void register(Profile profleRegiser) {
         Toast.makeText(this, "Register successfully, you can login now ", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
         startActivity(intent);

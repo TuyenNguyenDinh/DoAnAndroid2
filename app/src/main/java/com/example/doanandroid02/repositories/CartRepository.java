@@ -20,11 +20,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class CartRepository extends PayActivity {
-    DataClient api = APIService.getService();
-
+    DataClient api;
+    public CartRepository(){
+        api = APIService.getService();
+    }
 
     public void postCustomer(DataUserCallBack<Customer> dataCallBack){
-        api.postCustomer(fullname, phonenumber, address, email)
+        api.postCustomer(fullname,phonenumber,address,email)
                 .enqueue(new Callback<Customer>() {
                     @Override
                     public void onResponse(Call<Customer> call, Response<Customer> response) {
@@ -34,17 +36,14 @@ public class CartRepository extends PayActivity {
 
                     @Override
                     public void onFailure(Call<Customer> call, Throwable t) {
-                        Log.d("TAG", "onFailureCus: ");
+                        Log.d("TAG", "FailurePostCus: ");
                     }
                 });
     }
 
-    public void getCustomer(DataUserCallBack<Customer> dataUserCallBack){
-
-    }
 
     public void postBill(DataUserCallBack<Bill> dataUserCallBack){
-        int id = sharedPreferences.getInt("id_product",0);
+        int id = sharedPreferences.getInt("id_customer",0);
         int user_id = sharedPreferences.getInt("user_id",0);
         String address = sharedPreferences.getString("address","");
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
@@ -74,7 +73,7 @@ public class CartRepository extends PayActivity {
         int id_product;
         int sl;
         long dongia;
-        for (int i = 0; i < MainActivity.cartArrayList.size(); i++){
+        for (int i=0; i < MainActivity.cartArrayList.size(); i++){
             id_product = MainActivity.cartArrayList.get(i).idsp;
             sl = MainActivity.cartArrayList.get(i).soluongsp;
             dongia = MainActivity.cartArrayList.get(i).giasp;
