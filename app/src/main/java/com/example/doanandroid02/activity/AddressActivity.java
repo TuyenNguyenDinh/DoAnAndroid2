@@ -154,4 +154,9 @@ public class AddressActivity extends AppCompatActivity implements MainContract.V
     public void postBillDetail(BillDetail billDetail) {
 
     }
+
+    @Override
+    public void searchProduct(List<Product> products) {
+
+    }
 }

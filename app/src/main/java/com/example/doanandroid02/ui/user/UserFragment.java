@@ -169,4 +169,9 @@ public class UserFragment extends Fragment implements MainContract.View {
     public void postBillDetail(BillDetail billDetail) {
 
     }
+
+    @Override
+    public void searchProduct(List<Product> products) {
+
+    }
 }
