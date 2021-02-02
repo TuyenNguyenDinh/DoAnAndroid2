@@ -1,4 +1,4 @@
-package com.example.doanandroid02.ui.home;
+package com.example.doanandroid02.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,20 +20,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doanandroid02.CheckLoginRemember;
 import com.example.doanandroid02.R;
-import com.example.doanandroid02.activity.CartActivity;
-import com.example.doanandroid02.activity.LoginActivity;
-import com.example.doanandroid02.activity.MainContract;
-import com.example.doanandroid02.activity.MainPresenter;
-import com.example.doanandroid02.activity.SearchResult;
 import com.example.doanandroid02.adapter.NewProductAdapter;
 import com.example.doanandroid02.models.Bill;
 import com.example.doanandroid02.models.BillDetail;
 import com.example.doanandroid02.models.Category;
 import com.example.doanandroid02.models.Customer;
 import com.example.doanandroid02.models.Product;
-
 import com.example.doanandroid02.models.Profile;
-
 import com.example.doanandroid02.models.User;
 
 import java.util.List;
@@ -41,7 +34,6 @@ import java.util.List;
 import static android.view.View.GONE;
 
 public class HomeFragment extends Fragment implements MainContract.View {
-
     RecyclerView recyclerView;
     NewProductAdapter newProductAdapter;
     MainContract.Presenter mPresenter;
@@ -66,13 +58,13 @@ public class HomeFragment extends Fragment implements MainContract.View {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.card:
-              if(CheckLoginRemember.checkLoginRemember(getActivity().getApplicationContext())>0){
-                  Intent intent = new Intent(getActivity(), CartActivity.class);
-                  startActivity(intent);
-              }else {
-                  Intent intent = new Intent(getActivity(), LoginActivity.class);
-                  startActivity(intent);
-              }
+                if(CheckLoginRemember.checkLoginRemember(getActivity().getApplicationContext())>0){
+                    Intent intent = new Intent(getActivity(), CartActivity.class);
+                    startActivity(intent);
+                }else {
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -95,10 +87,7 @@ public class HomeFragment extends Fragment implements MainContract.View {
                 startActivity(intent);
             }
         });
-<<<<<<< HEAD
 
-=======
->>>>>>> 104f6910a0447d3a5562a14617c9d0f2502b241f
         return view;
     }
 
@@ -173,6 +162,4 @@ public class HomeFragment extends Fragment implements MainContract.View {
     public void searchProduct(List<Product> products) {
 
     }
-
-
 }

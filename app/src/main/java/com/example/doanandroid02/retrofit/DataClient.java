@@ -80,4 +80,5 @@ public interface DataClient {
 
     @GET("api/products/search")
     Call<List<Product>> searchProduct(@Query("q") String key);
+
 }

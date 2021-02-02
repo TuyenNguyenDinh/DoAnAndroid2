@@ -4,12 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.doanandroid02.R;
@@ -24,13 +22,15 @@ import com.example.doanandroid02.models.Customer;
 import com.example.doanandroid02.models.Product;
 import com.example.doanandroid02.models.Profile;
 import com.example.doanandroid02.models.User;
-import com.example.doanandroid02.repositories.ProductById;
+
 
 import java.util.List;
 
 public class SearchResult extends AppCompatActivity implements MainContract.View{
     RecyclerView recyclerView;
-    SearchAdapter productAdapter;
+
+
+    ProductAdapter productAdapter;
     MainContract.Presenter mPresenter;
     public static String titleSearch;
 
@@ -42,10 +42,9 @@ public class SearchResult extends AppCompatActivity implements MainContract.View
         recyclerView = findViewById(R.id.rvSearch);
         getSearchKey();
         mPresenter.searchProduct();
-
     }
 
-    public void getSearchKey(){
+    private void getSearchKey() {
         Intent intent = getIntent();
         titleSearch = intent.getStringExtra("searchKey");
         ActionBar actionBar = getSupportActionBar();
@@ -127,7 +126,7 @@ public class SearchResult extends AppCompatActivity implements MainContract.View
 
     @Override
     public void searchProduct(List<Product> products) {
-        productAdapter = new SearchAdapter(products, getApplicationContext());
+        productAdapter = new ProductAdapter(products, getApplicationContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         recyclerView.setAdapter(productAdapter);
