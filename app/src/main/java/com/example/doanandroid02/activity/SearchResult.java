@@ -11,10 +11,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.doanandroid02.R;
-import com.example.doanandroid02.adapter.NewProductAdapter;
 import com.example.doanandroid02.adapter.ProductAdapter;
-import com.example.doanandroid02.adapter.ProductByIdAdapter;
-import com.example.doanandroid02.adapter.SearchAdapter;
 import com.example.doanandroid02.models.Bill;
 import com.example.doanandroid02.models.BillDetail;
 import com.example.doanandroid02.models.Category;

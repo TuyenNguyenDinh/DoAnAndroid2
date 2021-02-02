@@ -39,10 +39,7 @@
                     android:maxLines="1"
                     android:paddingLeft="10dp"
                     android:textStyle="bold" />
-<<<<<<< HEAD
 
-=======
->>>>>>> 104f6910a0447d3a5562a14617c9d0f2502b241f
                 <Button
                     android:id="@+id/btSearch"
                     android:layout_width="30dp"

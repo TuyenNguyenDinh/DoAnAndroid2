@@ -95,10 +95,6 @@ public class HomeFragment extends Fragment implements MainContract.View {
                 startActivity(intent);
             }
         });
-<<<<<<< HEAD
-
-=======
->>>>>>> 104f6910a0447d3a5562a14617c9d0f2502b241f
         return view;
     }
 

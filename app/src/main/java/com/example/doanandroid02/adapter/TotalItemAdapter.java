@@ -59,7 +59,7 @@ public class TotalItemAdapter extends RecyclerView.Adapter<TotalItemAdapter.Item
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         holder.textGiaSpCrtquant.setText(decimalFormat.format(cart.giasp) + "VND");
         holder.quant.setText("x" + (cart.soluongsp));
-        Picasso.with(context).load("http://192.168.13.2/doan-laravel/public/upload/" + cart.getImg())
+        Picasso.with(context).load("http://10.0.2.2/doan-laravel/public/upload/" + cart.getImg())
                 .into(holder.imgTotal);
         CartActivity.countPrice(context);
 
