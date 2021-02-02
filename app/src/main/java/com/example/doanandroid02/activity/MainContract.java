@@ -28,6 +28,7 @@ public interface MainContract {
         void postCustomer(Customer customer);
         void postBill(Bill bill);
         void postBillDetail(BillDetail billDetail);
+        void searchProduct(List<Product> products);
 
     }
 
@@ -42,6 +43,6 @@ public interface MainContract {
         void postCustomer();
         void postBill();
         void postBillDetail();
-
+        void searchProduct();
     }
 }

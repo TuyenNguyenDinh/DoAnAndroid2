@@ -1,11 +1,15 @@
 package com.example.doanandroid02.repositories;
 
 
+import android.util.Log;
+
 import com.example.doanandroid02.activity.ProductByIdActivity;
+import com.example.doanandroid02.activity.SearchResult;
 import com.example.doanandroid02.retrofit.APIService;
 import com.example.doanandroid02.retrofit.DataClient;
 import com.example.doanandroid02.retrofit.RetrofitClientInstance;
 import com.example.doanandroid02.models.Product;
+import com.example.doanandroid02.ui.home.HomeFragment;
 
 
 import java.util.List;
@@ -61,6 +65,30 @@ public class ProductRepository {
 
             @Override
             public void onFailure(Call<List<Product>> call, Throwable t) {
+            }
+        });
+    }
+
+    public void searchProduct(DataCallBack<Product> dataCallBack){
+        api.searchProduct(SearchResult.titleSearch).enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                List<Product> productsSearch;
+                productsSearch = response.body();
+                String item[] = new String[productsSearch.size()];
+                for (int i = 0; i < productsSearch.size(); i++) {
+                    item[i] = String.valueOf(productsSearch.get(i).getId());
+                    item[i] = productsSearch.get(i).getAnh();
+                    item[i] = productsSearch.get(i).getTen();
+                    item[i] = String.valueOf(productsSearch.get(i).getGia_sp());
+                }
+                Log.d("TAG", "onResponse: " + productsSearch);
+                dataCallBack.response(productsSearch);
+            }
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+                Log.d("TAG", "onFailureGetSearch: ");
             }
         });
     }

@@ -152,7 +152,10 @@ public class CategoryFragment extends Fragment implements MainContract.View,Adap
 
     }
 
+    @Override
+    public void searchProduct(List<Product> products) {
 
+    }
 
 
     @Override

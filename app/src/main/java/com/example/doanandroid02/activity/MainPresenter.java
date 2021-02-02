@@ -60,6 +60,11 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
+    public void searchProduct() {
+        productRepository.searchProduct(data -> view.searchProduct(data));
+    }
+
+    @Override
     public void login() {
         userRepository.login(dataUser -> view.login(dataUser));
     }

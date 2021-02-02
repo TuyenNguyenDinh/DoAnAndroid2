@@ -18,6 +18,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface DataClient {
 
@@ -27,9 +28,6 @@ public interface DataClient {
 
     @GET("api/products")
     Call<List<Product>> getProduct();
-
-    @GET("api/products/{id}")
-    Call<List<Product>> getProductId(@Path("id") String id);
 
     @GET("api/categories/products/{id}")
     Call<List<Product>> getProductById(@Path("id") String id);
@@ -64,9 +62,6 @@ public interface DataClient {
                                 @Field("dia_chi") String dia_chi,
                                 @Field("mail") String mail);
 
-    @GET("api/customers/{id}")
-    Call<Customer> getCustomer(@Path("id") String id);
-
     @POST("api/orders/create")
     @FormUrlEncoded
     Call<Bill> postBill(@Field("customer_id") int customer_id,
@@ -76,13 +71,13 @@ public interface DataClient {
                         @Field("ghi_chu") String ghi_chu,
                         @Field("user_id") int user_id);
 
-    @GET("api/bills/{id}")
-    Call<Bill> getBill(@Path("id") String id);
-
     @POST("api/orderdetails/create")
     @FormUrlEncoded
     Call<BillDetail> postBillDetail(@Field("bill_id") int bill_id,
                                     @Field("product_id") int product_id,
                                     @Field("so_luong_mua") int so_luong_mua,
                                     @Field("don_gia") long don_gia);
+
+    @GET("api/products/search")
+    Call<List<Product>> searchProduct(@Query("q") String key);
 }

@@ -81,17 +81,14 @@ public class AddressActivity extends AppCompatActivity implements MainContract.V
             numberphone = textNumberPhone.getText().toString();
             email = textEmailAddr.getText().toString();
             address = textFullAddress.getText().toString();
-            try {
-                Integer.parseInt(numberphone);
-                textNumberPhone.setError("invalid format");
-            } catch (NumberFormatException e) {
+
                 Intent intent = new Intent(AddressActivity.this, PayActivity.class);
                 intent.putExtra("fullname", fullname);
                 intent.putExtra("numberphone", numberphone);
                 intent.putExtra("email", email);
                 intent.putExtra("address", address);
                 startActivity(intent);
-            }
+
         }
     }
 
@@ -152,6 +149,11 @@ public class AddressActivity extends AppCompatActivity implements MainContract.V
 
     @Override
     public void postBillDetail(BillDetail billDetail) {
+
+    }
+
+    @Override
+    public void searchProduct(List<Product> products) {
 
     }
 }

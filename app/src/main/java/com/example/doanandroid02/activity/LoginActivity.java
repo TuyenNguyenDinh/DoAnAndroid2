@@ -156,6 +156,11 @@ public class LoginActivity extends AppCompatActivity implements MainContract.Vie
 
     }
 
+    @Override
+    public void searchProduct(List<Product> products) {
+
+    }
+
 
     public void rememberName(int id, String username) {
         sharedPreferences = getSharedPreferences("USER_FILE.txt", MODE_PRIVATE);

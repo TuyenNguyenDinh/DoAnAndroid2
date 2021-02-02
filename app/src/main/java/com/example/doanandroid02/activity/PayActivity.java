@@ -81,6 +81,8 @@ public class PayActivity extends AppCompatActivity implements MainContract.View 
             @Override
             public void onClick(View v) {
                 mPresenter.postBill();
+                Intent intent = new Intent(getApplicationContext(), CompletePay.class);
+                startActivity(intent);
             }
         });
     }
@@ -150,7 +152,6 @@ public class PayActivity extends AppCompatActivity implements MainContract.View 
         editor.putInt("id_customer", customer.id);
         editor.putString("address", customer.dia_chi);
         editor.commit();
-//        Log.d("TAG", "postCustomer: " + customer.toString());
         Toast.makeText(this, "upload successfully", Toast.LENGTH_SHORT).show();
     }
 
@@ -165,5 +166,10 @@ public class PayActivity extends AppCompatActivity implements MainContract.View 
     @Override
     public void postBillDetail(BillDetail billDetail) {
         Log.d("TAG", "postBillDetail: ");
+    }
+
+    @Override
+    public void searchProduct(List<Product> products) {
+
     }
 }

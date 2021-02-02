@@ -8,6 +8,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
@@ -22,6 +24,7 @@ import com.example.doanandroid02.activity.CartActivity;
 import com.example.doanandroid02.activity.LoginActivity;
 import com.example.doanandroid02.activity.MainContract;
 import com.example.doanandroid02.activity.MainPresenter;
+import com.example.doanandroid02.activity.SearchResult;
 import com.example.doanandroid02.adapter.NewProductAdapter;
 import com.example.doanandroid02.models.Bill;
 import com.example.doanandroid02.models.BillDetail;
@@ -43,6 +46,9 @@ public class HomeFragment extends Fragment implements MainContract.View {
     NewProductAdapter newProductAdapter;
     MainContract.Presenter mPresenter;
     ProgressBar progressBar;
+    Button btSearch;
+    EditText editTextSearch;
+    String searchKey;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,6 +84,18 @@ public class HomeFragment extends Fragment implements MainContract.View {
         progressBar = view.findViewById(R.id.progressHome);
         mPresenter = new MainPresenter(this);
         mPresenter.loadProducts();
+        editTextSearch = view.findViewById(R.id.editSearch);
+        btSearch = view.findViewById(R.id.btSearch);
+        btSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchKey = editTextSearch.getText().toString();
+                Intent intent = new Intent(getActivity(), SearchResult.class);
+                intent.putExtra("searchKey",searchKey);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
@@ -148,6 +166,10 @@ public class HomeFragment extends Fragment implements MainContract.View {
 
     }
 
+    @Override
+    public void searchProduct(List<Product> products) {
+
+    }
 
 
 }

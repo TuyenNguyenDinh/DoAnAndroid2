@@ -134,4 +134,9 @@ public class ProductByIdActivity extends AppCompatActivity implements MainContra
 
     }
 
+    @Override
+    public void searchProduct(List<Product> products) {
+
+    }
+
 }

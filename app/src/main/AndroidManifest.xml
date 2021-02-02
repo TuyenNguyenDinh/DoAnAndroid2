@@ -13,14 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DoAnAndroid02">
+        <activity android:name=".activity.CompletePay"></activity>
+        <activity android:name=".activity.SearchResult" />
         <activity
             android:name=".activity.PayActivity"
-            android:label="@string/title_activity_pay"></activity>
+            android:label="@string/title_activity_pay" />
         <activity android:name=".activity.AddressActivity" />
-
-        <activity android:name=".activity.RegisterActivity"></activity>
+        <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.LoginActivity" />
-
         <activity android:name=".activity.CartActivity" />
         <activity android:name=".activity.ProductByIdActivity" />
         <activity android:name=".activity.ProductDetailsActivity" />
